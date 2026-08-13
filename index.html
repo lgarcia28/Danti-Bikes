@@ -186,7 +186,7 @@
 
         <div class="showcase-grid">
           <div class="showcase-card" id="solutionCardBikes">
-            <div class="showcase-bg" style="background-image: url('assets/specialized_chisel.jpg');"></div>
+            <div class="showcase-bg" style="background-image: url('assets/venzo_raptor.jpg');"></div>
             <div class="showcase-overlay">
               <span class="showcase-tag">BICICLETAS NUEVAS 0KM</span>
               <h3 class="showcase-title">CATÁLOGO DE BICICLETAS</h3>
@@ -196,7 +196,7 @@
           </div>
 
           <div class="showcase-card" id="solutionCardService">
-            <div class="showcase-bg" style="background-image: url('assets/cannondale_road.jpg');"></div>
+            <div class="showcase-bg" style="background-image: url('assets/moove_cronos.jpg');"></div>
             <div class="showcase-overlay">
               <span class="showcase-tag">MANTENIMIENTO INTEGRAL</span>
               <h3 class="showcase-title">TALLER & SERVICE MECÁNICO</h3>
@@ -238,7 +238,7 @@
           <!-- SEARCH BAR INSIDE CATALOG PAGE -->
           <div class="catalog-search-box">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="catalogSearchInput" placeholder="Buscar por marca (Moove, Venzo, Samurai, etc), modelo o rodado..." aria-label="Buscar en el catálogo">
+            <input type="text" id="catalogSearchInput" placeholder="Buscar por modelo (Venzo Primal, Moove Cronos, Venzo Loki, Venzo Skyline, Venzo Raptor)..." aria-label="Buscar en el catálogo">
             <button class="btn-search-catalog" id="btnSearchCatalog"><i class="fa-solid fa-search"></i> Buscar</button>
           </div>
         </div>
@@ -334,11 +334,12 @@
               <label class="filter-label" for="filterColor">Color Principal</label>
               <select id="filterColor" class="filter-select">
                 <option value="ALL">Todos los colores</option>
-                <option value="Negro">Negro / Dark</option>
                 <option value="Naranja">Naranja Danti</option>
-                <option value="Gris">Gris / Silver</option>
-                <option value="Rojo">Rojo</option>
-                <option value="Azul">Azul</option>
+                <option value="Negro">Negro Matte</option>
+                <option value="Blanco">Blanco Nieve</option>
+                <option value="Gris">Gris Silver</option>
+                <option value="Rojo">Rojo Fuego</option>
+                <option value="Azul">Azul Eléctrico</option>
               </select>
             </div>
 
@@ -675,21 +676,63 @@
               </div>
             </div>
 
-            <!-- Color Palette Dual Select (Color Principal + Color Secundario) -->
-            <div class="form-row split-2">
-              <div class="form-field">
-                <label for="adminColorPrimaryName">Color Principal *</label>
-                <div class="color-picker-input-group">
-                  <input type="color" id="adminColorPrimaryPicker" value="#FA9D00" class="color-picker-thumb">
-                  <input type="text" id="adminColorPrimaryName" required placeholder="Ej: Naranja Danti" class="color-name-input">
-                </div>
+            <!-- 10 PRESET COLOR PALETTE + CUSTOM COLOR PICKER TRIGGER -->
+            <div class="form-field full">
+              <label class="specs-section-label"><i class="fa-solid fa-palette highlight-orange"></i> SELECCIÓN DE COLOR (10 PREDEFINIDOS + PALETA LIBRE)</label>
+              
+              <!-- 10 Preset Color Buttons -->
+              <div class="color-presets-grid" id="colorPresetsGrid">
+                <button type="button" class="color-preset-pill" data-name="Naranja Danti" data-hex="#FA9D00" style="--c:#FA9D00">
+                  <span class="color-dot"></span> Naranja Danti
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Negro Matte" data-hex="#121214" style="--c:#121214">
+                  <span class="color-dot"></span> Negro Matte
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Blanco Nieve" data-hex="#FFFFFF" style="--c:#FFFFFF">
+                  <span class="color-dot" style="border:1px solid #999"></span> Blanco Nieve
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Gris Silver" data-hex="#71717A" style="--c:#71717A">
+                  <span class="color-dot"></span> Gris Silver
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Rojo Fuego" data-hex="#EF4444" style="--c:#EF4444">
+                  <span class="color-dot"></span> Rojo Fuego
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Azul Eléctrico" data-hex="#3B82F6" style="--c:#3B82F6">
+                  <span class="color-dot"></span> Azul Eléctrico
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Verde Lima" data-hex="#84CC16" style="--c:#84CC16">
+                  <span class="color-dot"></span> Verde Lima
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Amarillo Neon" data-hex="#EAB308" style="--c:#EAB308">
+                  <span class="color-dot"></span> Amarillo Neon
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Morado Anodizado" data-hex="#A855F7" style="--c:#A855F7">
+                  <span class="color-dot"></span> Morado Anodizado
+                </button>
+                <button type="button" class="color-preset-pill" data-name="Bronce Metalizado" data-hex="#9A3412" style="--c:#9A3412">
+                  <span class="color-dot"></span> Bronce Metalizado
+                </button>
               </div>
 
-              <div class="form-field">
-                <label for="adminColorSecondaryName">Color Secundario (Opcional)</label>
-                <div class="color-picker-input-group">
-                  <input type="color" id="adminColorSecondaryPicker" value="#121214" class="color-picker-thumb">
-                  <input type="text" id="adminColorSecondaryName" placeholder="Ej: Negro Matte" class="color-name-input">
+              <!-- Dual Inputs for Custom Pickers -->
+              <div class="form-row split-2" style="margin-top:12px;">
+                <div class="form-field">
+                  <div class="label-with-action">
+                    <label for="adminColorPrimaryName">Color Principal *</label>
+                    <button type="button" class="btn-add-custom-option" id="btnOpenCustomColorPicker"><i class="fa-solid fa-palette"></i> + Paleta Libre</button>
+                  </div>
+                  <div class="color-picker-input-group">
+                    <input type="color" id="adminColorPrimaryPicker" value="#FA9D00" class="color-picker-thumb">
+                    <input type="text" id="adminColorPrimaryName" required placeholder="Ej: Naranja Danti" class="color-name-input">
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="adminColorSecondaryName">Color Secundario (Opcional)</label>
+                  <div class="color-picker-input-group">
+                    <input type="color" id="adminColorSecondaryPicker" value="#121214" class="color-picker-thumb">
+                    <input type="text" id="adminColorSecondaryName" placeholder="Ej: Negro Matte" class="color-name-input">
+                  </div>
                 </div>
               </div>
             </div>

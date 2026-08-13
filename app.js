@@ -3,11 +3,11 @@
  * Official Brands: MOOVE, ZEST, PRK, SAMURAI, VENZO
  */
 
-// Initial Seed Products Catalog featuring official Danti Bikes brands
+// Initial Seed Products Catalog featuring user requested official bike models
 const INITIAL_PRODUCTS = [
   {
     id: "db-001",
-    model: "Venzo Raptor EX R29",
+    model: "Venzo Primal R29",
     brand: "VENZO",
     category: "MTB",
     wheelSize: "29\"",
@@ -17,42 +17,111 @@ const INITIAL_PRODUCTS = [
     colorHex: "#FA9D00",
     condition: "NUEVO",
     price: 890000,
-    stock: 4,
+    stock: 5,
     featured: true,
-    image: "assets/venzo_raptor.jpg",
+    image: "assets/venzo_primal.jpg",
     specs: {
-      cuadro: "Aluminio 6061 Venzo Raptor EX cableado interno",
+      cuadro: "Aluminio 6061 Venzo Primal cableado interno",
       transmision: "Shimano Deore 1x11v Monoplato",
       frenos: "Disco Hidráulico Shimano MT200",
       suspension: "B1 Team Aire con bloqueo al manubrio",
-      peso: "13.2 kg"
+      peso: "13.1 kg"
     }
   },
   {
     id: "db-002",
-    model: "Moove Sport Pro 29\"",
+    model: "Moove Cronos 29\"",
     brand: "MOOVE",
     category: "MTB",
     wheelSize: "29\"",
     frameSize: "L",
-    colorPrimary: "Negro",
+    colorPrimary: "Gris Silver",
     colorSecondary: "Naranja",
-    colorHex: "#121214",
+    colorHex: "#71717A",
     condition: "NUEVO",
-    price: 780000,
-    stock: 3,
+    price: 795000,
+    stock: 4,
     featured: true,
-    image: "assets/specialized_chisel.jpg",
+    image: "assets/moove_cronos.jpg",
     specs: {
-      cuadro: "Aluminio Hidroformado Moove Pro Lightweight",
-      transmision: "Shimano Tourney/Altus 2x9v",
+      cuadro: "Aluminio Hidroformado Moove Cronos Lightweight",
+      transmision: "Shimano Altus 2x9v",
       frenos: "Disco Hidráulico Logan 160mm",
       suspension: "Horquilla con bloqueo manual 100mm",
-      peso: "13.5 kg"
+      peso: "13.4 kg"
     }
   },
   {
     id: "db-003",
+    model: "Venzo Loki R29",
+    brand: "VENZO",
+    category: "MTB",
+    wheelSize: "29\"",
+    frameSize: "M",
+    colorPrimary: "Naranja Danti",
+    colorSecondary: "Negro Matte",
+    colorHex: "#FA9D00",
+    condition: "NUEVO",
+    price: 920000,
+    stock: 3,
+    featured: true,
+    image: "assets/venzo_loki.jpg",
+    specs: {
+      cuadro: "Aluminio 6061 T6 Venzo Loki Trail Geometry",
+      transmision: "Shimano Cues 1x10v",
+      frenos: "Frenos Hidráulicos Shimano MT200",
+      suspension: "Suntour XCM 100mm con Bloqueo",
+      peso: "13.6 kg"
+    }
+  },
+  {
+    id: "db-004",
+    model: "Venzo Skyline R29",
+    brand: "VENZO",
+    category: "MTB",
+    wheelSize: "29\"",
+    frameSize: "L",
+    colorPrimary: "Negro Matte",
+    colorSecondary: "Gris Silver",
+    colorHex: "#121214",
+    condition: "NUEVO",
+    price: 840000,
+    stock: 4,
+    featured: true,
+    image: "assets/venzo_raptor.jpg",
+    specs: {
+      cuadro: "Aluminio 6061 Venzo Skyline",
+      transmision: "Shimano Tourney TX 3x7v",
+      frenos: "Frenos a Disco Mecánicos 160mm",
+      suspension: "Horquilla con suspensión 80mm",
+      peso: "14.1 kg"
+    }
+  },
+  {
+    id: "db-005",
+    model: "Venzo Raptor EX R29",
+    brand: "VENZO",
+    category: "MTB",
+    wheelSize: "29\"",
+    frameSize: "S",
+    colorPrimary: "Rojo Fuego",
+    colorSecondary: "Negro Matte",
+    colorHex: "#EF4444",
+    condition: "NUEVO",
+    price: 960000,
+    stock: 3,
+    featured: false,
+    image: "assets/venzo_raptor.jpg",
+    specs: {
+      cuadro: "Aluminio 6061 Venzo Raptor EX Competición",
+      transmision: "Shimano Deore 1x12v",
+      frenos: "Disco Hidráulico Shimano MT400",
+      suspension: "Horquilla con bloqueo al manubrio Aire 100mm",
+      peso: "12.9 kg"
+    }
+  },
+  {
+    id: "db-006",
     model: "Zest Elite Carbon Gravel",
     brand: "ZEST",
     category: "RUTA",
@@ -64,7 +133,7 @@ const INITIAL_PRODUCTS = [
     condition: "NUEVO",
     price: 1450000,
     stock: 2,
-    featured: true,
+    featured: false,
     image: "assets/cannondale_road.jpg",
     specs: {
       cuadro: "Fibra de Carbono Monocasco Zest Aero",
@@ -72,75 +141,6 @@ const INITIAL_PRODUCTS = [
       frenos: "Frenos de Disco Hidráulicos Shimano 105",
       suspension: "Horquilla Rígida de Carbono Tapered",
       peso: "8.9 kg"
-    }
-  },
-  {
-    id: "db-004",
-    model: "PRK Street Pro 20\"",
-    brand: "PRK",
-    category: "BMX",
-    wheelSize: "20\"",
-    frameSize: "Único",
-    colorPrimary: "Rojo Fuego",
-    colorSecondary: "Negro",
-    colorHex: "#EF4444",
-    condition: "NUEVO",
-    price: 520000,
-    stock: 5,
-    featured: false,
-    image: "assets/cult_bmx.jpg",
-    specs: {
-      cuadro: "Acero Cromo 4130 PRK Street Reinforced",
-      transmision: "Monomarcha BMX 25T / Driver 9T",
-      frenos: "U-Brake Trasero de Aluminio",
-      suspension: "Horquilla Rígida Cromo 4130",
-      peso: "11.1 kg"
-    }
-  },
-  {
-    id: "db-005",
-    model: "Samurai Trail Master 29\"",
-    brand: "SAMURAI",
-    category: "MTB",
-    wheelSize: "29\"",
-    frameSize: "S",
-    colorPrimary: "Azul Eléctrico",
-    colorSecondary: "Gris",
-    colorHex: "#3B82F6",
-    condition: "NUEVO",
-    price: 940000,
-    stock: 3,
-    featured: true,
-    image: "assets/scott_scale.jpg",
-    specs: {
-      cuadro: "Aluminio 6061 T6 Samurai Enduro Geometry",
-      transmision: "Shimano Cues 1x10v",
-      frenos: "Frenos Hidráulicos Shimano MT200",
-      suspension: "Suntour XCM 100mm con Bloqueo",
-      peso: "13.8 kg"
-    }
-  },
-  {
-    id: "db-006",
-    model: "Casco Specialized Align II MIPS",
-    brand: "MOOVE",
-    category: "CASCOS",
-    wheelSize: "N/A",
-    frameSize: "M",
-    colorPrimary: "Negro Matte",
-    colorSecondary: "",
-    colorHex: "#18181B",
-    condition: "NUEVO",
-    price: 95000,
-    stock: 8,
-    featured: false,
-    image: "assets/casco_specialized.jpg",
-    specs: {
-      cuadro: "Policarbonato In-Mold con EPS",
-      transmision: "N/A",
-      frenos: "N/A",
-      suspension: "N/A",
-      peso: "310 g"
     }
   }
 ];
@@ -169,7 +169,7 @@ class DantiBikesApp {
 
   // Load / Save Local Storage
   loadProductsFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_products_v3");
+    const saved = localStorage.getItem("danti_bikes_products_v4");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -177,11 +177,11 @@ class DantiBikesApp {
   }
 
   saveProductsToStorage() {
-    localStorage.setItem("danti_bikes_products_v3", JSON.stringify(this.products));
+    localStorage.setItem("danti_bikes_products_v4", JSON.stringify(this.products));
   }
 
   loadCartFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_cart_v3");
+    const saved = localStorage.getItem("danti_bikes_cart_v4");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -189,7 +189,7 @@ class DantiBikesApp {
   }
 
   saveCartToStorage() {
-    localStorage.setItem("danti_bikes_cart_v3", JSON.stringify(this.cart));
+    localStorage.setItem("danti_bikes_cart_v4", JSON.stringify(this.cart));
   }
 
   // Initialize DOM References
@@ -247,6 +247,7 @@ class DantiBikesApp {
     this.btnAddCustomCategory = document.getElementById("btnAddCustomCategory");
     this.btnAddCustomWheelSize = document.getElementById("btnAddCustomWheelSize");
     this.btnAddCustomFrameSize = document.getElementById("btnAddCustomFrameSize");
+    this.btnOpenCustomColorPicker = document.getElementById("btnOpenCustomColorPicker");
 
     // Color pickers & inputs
     this.adminColorPrimaryPicker = document.getElementById("adminColorPrimaryPicker");
@@ -405,11 +406,24 @@ class DantiBikesApp {
     this.btnAddCustomWheelSize?.addEventListener("click", () => this.addCustomOption("adminWheelSize", "rodado"));
     this.btnAddCustomFrameSize?.addEventListener("click", () => this.addCustomOption("adminFrameSize", "talle"));
 
-    // Color Pickers auto-fill Hex/Name sync
-    this.adminColorPrimaryPicker?.addEventListener("input", (e) => {
-      if (!this.adminColorPrimaryName.value) {
-        this.adminColorPrimaryName.value = e.target.value.toUpperCase();
-      }
+    // 10 Preset Color Pills Handlers
+    const colorPills = document.querySelectorAll("#colorPresetsGrid .color-preset-pill");
+    colorPills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        colorPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        
+        const name = pill.dataset.name;
+        const hex = pill.dataset.hex;
+
+        if (this.adminColorPrimaryName) this.adminColorPrimaryName.value = name;
+        if (this.adminColorPrimaryPicker) this.adminColorPrimaryPicker.value = hex;
+      });
+    });
+
+    // Open Custom Color Picker Trigger
+    this.btnOpenCustomColorPicker?.addEventListener("click", () => {
+      if (this.adminColorPrimaryPicker) this.adminColorPrimaryPicker.click();
     });
   }
 
@@ -464,6 +478,11 @@ class DantiBikesApp {
       this.renderAdminTable();
       this.updateAdminMetrics();
     }
+  }
+
+  renderCurrentView() {
+    this.renderHomeFeaturedGrid();
+    this.renderCatalogGrid();
   }
 
   // Sync Category Pills UI
@@ -904,6 +923,7 @@ class DantiBikesApp {
     if (this.adminProductId) this.adminProductId.value = "";
     if (this.adminFormTitle) this.adminFormTitle.innerHTML = `<i class="fa-solid fa-plus-circle highlight-orange"></i> Cargar Nuevo Producto`;
     if (this.cancelEditBtn) this.cancelEditBtn.style.display = "none";
+    document.querySelectorAll("#colorPresetsGrid .color-preset-pill").forEach(p => p.classList.remove("active"));
   }
 
   handleAdminFormSubmit(e) {
@@ -921,7 +941,7 @@ class DantiBikesApp {
     const featured = document.getElementById("adminFeatured").checked;
 
     // Dual Colors
-    const colorPrimary = this.adminColorPrimaryName.value.trim() || "Negro";
+    const colorPrimary = this.adminColorPrimaryName.value.trim() || "Naranja Danti";
     const colorSecondary = this.adminColorSecondaryName.value.trim() || "";
     const colorHex = this.adminColorPrimaryPicker.value || "#FA9D00";
 
