@@ -554,11 +554,11 @@ button {
 
 /* --- DIRECT COMPACT BRAND LOGOS MARQUEE BANNER --- */
 .brands-marquee-section.direct-banner {
-  padding: 16px 0;
+  padding: 20px 0;
   background: #141418;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  margin: 24px 0;
+  margin: 28px 0;
   overflow: hidden;
 }
 
@@ -571,7 +571,7 @@ button {
 }
 .marquee-track {
   display: flex;
-  gap: 40px;
+  gap: 50px;
   width: max-content;
   align-items: center;
   animation: marqueeScroll 28s linear infinite;
@@ -585,7 +585,7 @@ button {
   100% { transform: translateX(-50%); }
 }
 
-/* Floating Brand Logo Item - Compact size */
+/* Floating Brand Logo Item - Visually balanced sizes */
 .brand-marquee-item {
   display: flex;
   align-items: center;
@@ -596,20 +596,43 @@ button {
   border: none;
   box-shadow: none;
 }
+
 .brand-logo-img-real {
-  height: 30px;
-  max-height: 34px;
   width: auto;
-  max-width: 130px;
+  max-width: 170px;
   object-fit: contain;
-  opacity: 0.85;
+  opacity: 0.9;
   filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
   transition: all 0.3s ease;
 }
+
+/* Specific Height Balancing per Brand */
+.brand-marquee-item[data-brand="MOOVE"] .brand-logo-img-real {
+  height: 44px;
+}
+.brand-marquee-item[data-brand="ZEST"] .brand-logo-img-real {
+  height: 42px;
+}
+.brand-marquee-item[data-brand="PRK"] .brand-logo-img-real {
+  height: 44px;
+}
+.brand-marquee-item[data-brand="SAMURAI"] .brand-logo-img-real {
+  height: 46px;
+}
+.brand-marquee-item[data-brand="VENZO"] .brand-logo-img-real {
+  height: 28px;
+}
+.brand-marquee-item[data-brand="SHIMANO"] .brand-logo-img-real {
+  height: 26px;
+}
+.brand-marquee-item[data-brand="L-TWOO"] .brand-logo-img-real {
+  height: 28px;
+}
+
 .brand-marquee-item:hover .brand-logo-img-real {
   opacity: 1;
   transform: scale(1.12);
-  filter: drop-shadow(0 0 12px var(--accent-orange-glow));
+  filter: drop-shadow(0 0 14px var(--accent-orange-glow));
 }
 
 /* --- DANTI SHOWCASE BANNERS --- */
