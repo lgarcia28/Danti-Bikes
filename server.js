@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 8085;
+const PORT = process.env.PORT || 8085;
 const ROOT_DIR = fs.realpathSync(__dirname);
 
 const MIME_TYPES = {
@@ -18,7 +18,7 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon'
 };
 
-const server = http.createServer((req, res) => {
+const handler = (req, res) => {
   const reqUrl = req.url.split('?')[0];
   let safePath = path.normalize(reqUrl).replace(/^(\.\.[\/\\])+/, '');
   let filePath = path.join(ROOT_DIR, safePath === '/' ? 'index.html' : safePath);
@@ -43,8 +43,13 @@ const server = http.createServer((req, res) => {
 
     fs.createReadStream(filePath).pipe(res);
   });
-});
+};
 
-server.listen(PORT, () => {
-  console.log(`Danti Bikes server running at http://localhost:${PORT}/`);
-});
+if (require.main === module) {
+  const server = http.createServer(handler);
+  server.listen(PORT, () => {
+    console.log(`Danti Bikes server running at http://localhost:${PORT}/`);
+  });
+}
+
+module.exports = handler;
