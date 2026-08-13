@@ -729,7 +729,7 @@ class DantiBikesApp {
               <button class="btn-card-add-cart" data-id="${prod.id}" title="Agregar al Carrito">
                 <i class="fa-solid fa-cart-plus"></i> Agregar
               </button>
-              <a href="https://wa.me/5493411234567?text=Hola%20Danti%20Bikes,%20quisiera%20consultar%20por%20la%20bicicleta%20${encodeURIComponent(prod.model)}." target="_blank" class="btn-card-wa" title="Consultar por WhatsApp">
+              <a href="https://wa.me/5493416055274?text=Hola%20Danti%20Bikes,%20quisiera%20consultar%20por%20la%20bicicleta%20${encodeURIComponent(prod.model)}." target="_blank" class="btn-card-wa" title="Consultar por WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
               </a>
               <button class="btn-card-detail" data-id="${prod.id}" title="Ver Ficha Técnica">
@@ -789,7 +789,7 @@ class DantiBikesApp {
             <button class="btn-hero-primary btn-modal-add" data-id="${prod.id}">
               <i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito
             </button>
-            <a href="https://wa.me/5493411234567?text=Hola%20Danti%20Bikes,%20quisiera%20comprar%20la%20${encodeURIComponent(prod.model)}." target="_blank" class="btn-whatsapp-large">
+            <a href="https://wa.me/5493416055274?text=Hola%20Danti%20Bikes,%20quisiera%20comprar%20la%20${encodeURIComponent(prod.model)}." target="_blank" class="btn-whatsapp-large">
               <i class="fa-brands fa-whatsapp"></i> Comprar por WhatsApp
             </a>
           </div>
@@ -958,7 +958,7 @@ class DantiBikesApp {
       total += item.price * item.qty;
     });
     text += `\n*Total Estimado:* $${total.toLocaleString("es-AR")} ARS`;
-    window.open(`https://wa.me/5493411234567?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/5493416055274?text=${encodeURIComponent(text)}`, "_blank");
   }
 
   // ==========================================================================
