@@ -170,26 +170,29 @@ class DantiBikesApp {
 
     this.initDOM();
     this.bindEvents();
-    this.initScrollReveal();
     this.renderCurrentView();
     this.updateCartBadge();
+    this.initScrollReveal();
   }
 
   // Load / Save Local Storage
   loadProductsFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_products_v7");
+    const saved = localStorage.getItem("danti_bikes_products_v8");
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.length > 0) return parsed;
+      } catch (e) { console.error(e); }
     }
     return INITIAL_PRODUCTS;
   }
 
   saveProductsToStorage() {
-    localStorage.setItem("danti_bikes_products_v7", JSON.stringify(this.products));
+    localStorage.setItem("danti_bikes_products_v8", JSON.stringify(this.products));
   }
 
   loadCartFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_cart_v7");
+    const saved = localStorage.getItem("danti_bikes_cart_v8");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -197,7 +200,7 @@ class DantiBikesApp {
   }
 
   saveCartToStorage() {
-    localStorage.setItem("danti_bikes_cart_v7", JSON.stringify(this.cart));
+    localStorage.setItem("danti_bikes_cart_v8", JSON.stringify(this.cart));
   }
 
   // Initialize DOM References
@@ -296,7 +299,7 @@ class DantiBikesApp {
           entry.target.classList.add("is-visible");
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll(".reveal-on-scroll").forEach(el => observer.observe(el));
   }
@@ -576,7 +579,7 @@ class DantiBikesApp {
       this.updateAdminMetrics();
     }
 
-    setTimeout(() => this.initScrollReveal(), 100);
+    setTimeout(() => this.initScrollReveal(), 50);
   }
 
   renderCurrentView() {
@@ -652,11 +655,18 @@ class DantiBikesApp {
     });
   }
 
-  // Render Home Featured Grid
+  // Render Home Featured Grid (Ensures products render reliably!)
   renderHomeFeaturedGrid() {
     if (!this.homeFeaturedGrid) return;
-    const featuredList = this.products.filter(p => p.featured).slice(0, 4);
-    this.homeFeaturedGrid.innerHTML = featuredList.map(prod => this.createProductCardHTML(prod)).join("");
+    
+    let featuredList = this.products.filter(p => p.featured);
+    if (featuredList.length === 0) {
+      featuredList = this.products.slice(0, 4);
+    } else {
+      featuredList = featuredList.slice(0, 4);
+    }
+
+    this.homeFeaturedGrid.innerHTML = featuredList.map(prod => this.createProductCardHTML(prod, true)).join("");
     this.attachCardEventListeners(this.homeFeaturedGrid);
   }
 
@@ -683,13 +693,14 @@ class DantiBikesApp {
     this.attachCardEventListeners(this.productGrid);
   }
 
-  // Create Product Card HTML
-  createProductCardHTML(prod) {
+  // Create Product Card HTML (isFeaturedView force visible immediately)
+  createProductCardHTML(prod, isFeaturedView = false) {
     const formattedPrice = new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(prod.price);
     const colorDisplay = prod.colorSecondary ? `${prod.colorPrimary} / ${prod.colorSecondary}` : (prod.colorPrimary || prod.color || "Negro");
+    const visibilityClass = isFeaturedView ? "is-visible" : "reveal-on-scroll";
 
     return `
-      <article class="product-card reveal-on-scroll" data-id="${prod.id}">
+      <article class="product-card ${visibilityClass}" data-id="${prod.id}">
         <div class="card-image-wrap">
           <img src="${prod.image}" alt="${prod.model}" class="card-img" loading="lazy">
           <div class="card-badges">
@@ -1062,6 +1073,7 @@ class DantiBikesApp {
     this.renderAdminTable();
     this.updateAdminMetrics();
     this.renderCatalogGrid();
+    this.renderHomeFeaturedGrid();
     this.closeAdminModal();
     alert(`¡Producto "${model}" guardado correctamente!`);
   }
@@ -1073,6 +1085,7 @@ class DantiBikesApp {
     this.renderAdminTable();
     this.updateAdminMetrics();
     this.renderCatalogGrid();
+    this.renderHomeFeaturedGrid();
   }
 
   renderAdminTable() {
