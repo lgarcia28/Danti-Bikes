@@ -2,7 +2,7 @@
    DANTI BIKES - DANTI BRAND COLOR PALETTE & DESIGN SYSTEM
    Palette: Dark Obsidian Graphite (#121214), Surface Card (#1C1C20), Logo Amber Gold (#FA9D00), Border (#2D2D34)
    Typography: Montserrat (Headlines), Inter (Body), JetBrains Mono (Specs/Prices)
-   Official Brands: MOOVE, ZEST, PRK, SAMURAI, VENZO, SHIMANO, L-TWOO
+   Official Brands: MOOVE, ZEST, PRK, SAMURAI, VENZO
    ========================================================================== */
 
 /* --- CSS VARIABLES & TOKENS (Extracted from official logo) --- */
@@ -552,13 +552,13 @@ button {
   margin-top: 2px;
 }
 
-/* --- DIRECT COMPACT BRAND LOGOS MARQUEE BANNER --- */
+/* --- DIRECT BRAND LOGOS MARQUEE BANNER --- */
 .brands-marquee-section.direct-banner {
-  padding: 20px 0;
+  padding: 28px 0;
   background: #141418;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  margin: 28px 0;
+  margin: 32px 0;
   overflow: hidden;
 }
 
@@ -571,10 +571,10 @@ button {
 }
 .marquee-track {
   display: flex;
-  gap: 50px;
+  gap: 65px;
   width: max-content;
   align-items: center;
-  animation: marqueeScroll 28s linear infinite;
+  animation: marqueeScroll 25s linear infinite;
 }
 .marquee-wrapper:hover .marquee-track {
   animation-play-state: paused;
@@ -585,12 +585,12 @@ button {
   100% { transform: translateX(-50%); }
 }
 
-/* Floating Brand Logo Item - Visually balanced sizes */
+/* Floating Brand Logo Item - Visually enlarged & balanced sizes */
 .brand-marquee-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 4px;
+  padding: 0 10px;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -599,40 +599,34 @@ button {
 
 .brand-logo-img-real {
   width: auto;
-  max-width: 170px;
+  max-width: 210px;
   object-fit: contain;
-  opacity: 0.9;
-  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+  opacity: 0.95;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.6));
   transition: all 0.3s ease;
 }
 
-/* Specific Height Balancing per Brand */
+/* Prominent Heights for MOOVE, ZEST, PRK, SAMURAI and VENZO */
 .brand-marquee-item[data-brand="MOOVE"] .brand-logo-img-real {
-  height: 44px;
+  height: 56px;
 }
 .brand-marquee-item[data-brand="ZEST"] .brand-logo-img-real {
-  height: 42px;
+  height: 54px;
 }
 .brand-marquee-item[data-brand="PRK"] .brand-logo-img-real {
-  height: 44px;
+  height: 56px;
 }
 .brand-marquee-item[data-brand="SAMURAI"] .brand-logo-img-real {
-  height: 46px;
+  height: 60px;
 }
 .brand-marquee-item[data-brand="VENZO"] .brand-logo-img-real {
-  height: 28px;
-}
-.brand-marquee-item[data-brand="SHIMANO"] .brand-logo-img-real {
-  height: 26px;
-}
-.brand-marquee-item[data-brand="L-TWOO"] .brand-logo-img-real {
-  height: 28px;
+  height: 36px;
 }
 
 .brand-marquee-item:hover .brand-logo-img-real {
   opacity: 1;
   transform: scale(1.12);
-  filter: drop-shadow(0 0 14px var(--accent-orange-glow));
+  filter: drop-shadow(0 0 16px var(--accent-orange-glow));
 }
 
 /* --- DANTI SHOWCASE BANNERS --- */

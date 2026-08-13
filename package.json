@@ -1,0 +1,10 @@
+{
+  "name": "danti-bikes",
+  "version": "1.0.0",
+  "description": "Danti Bikes E-commerce Platform",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static build ready'",
+    "start": "node server.js"
+  }
+}
