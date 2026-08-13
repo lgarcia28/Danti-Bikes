@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <linearGradient id="mooveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#FA9D00" />
+    </linearGradient>
+  </defs>
+  <path d="M20 42 L30 18 L38 34 L46 18 L56 42 L48 42 L42 27 L38 36 L34 27 L28 42 Z" fill="url(#mooveGrad)" />
+  <circle cx="75" cy="30" r="11" fill="none" stroke="#FA9D00" stroke-width="4" />
+  <circle cx="102" cy="30" r="11" fill="none" stroke="#FA9D00" stroke-width="4" />
+  <path d="M120 18 L130 42 L142 42" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+  <path d="M150 18 L170 18 M150 30 L166 30 M150 42 L172 42" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+</svg>

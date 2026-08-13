@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danti Bikes | Bicicletas Moove, Zest, PRK, Samurai y Venzo</title>
+  <meta name="description" content="Tienda y taller oficial especializado en bicicletas MTB, Ruta, BMX y Urbanas. Marcas oficiales: Moove, Zest, PRK, Samurai y Venzo en Danti Bikes.">
+  
+  <!-- Google Fonts: Montserrat, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <div class="announcement-content">
+      <span><i class="fa-solid fa-flag-checkered"></i> DANTI BIKES SHOWROOM & SERVICE TALLER</span>
+      <span class="dot">•</span>
+      <span><i class="fa-solid fa-truck-fast"></i> ENVÍOS ASEGURADOS A TODO EL PAÍS</span>
+      <span class="dot">•</span>
+      <span><i class="fa-solid fa-credit-card"></i> MARCAS OFICIALES: MOOVE, ZEST, PRK, SAMURAI Y VENZO</span>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar-sticky" id="navbar">
+    <div class="nav-container">
+      <!-- Official Round Logo -->
+      <a href="#" class="brand-logo" id="logoLink">
+        <img src="assets/logo.png" alt="Danti Bikes Official Logo" class="brand-logo-img">
+        <div class="logo-text">
+          <span class="brand-name">DANTI <span class="accent-text">BIKES</span></span>
+          <span class="brand-tagline">SHOWROOM & TALLER</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation Menu -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link active" data-view="home"><i class="fa-solid fa-house"></i> Inicio</a>
+        
+        <!-- Bikes Dropdown (Opens Catalog view directly) -->
+        <div class="dropdown">
+          <button class="dropdown-btn nav-link" id="navBikesBtn" data-view="catalog" data-category="ALL">
+            <i class="fa-solid fa-person-biking"></i> Bicicletas <i class="fa-solid fa-chevron-down arrow"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#" class="nav-cat-link" data-category="ALL"><i class="fa-solid fa-border-all"></i> Ver Todas</a>
+            <a href="#" class="nav-cat-link" data-category="MTB"><i class="fa-solid fa-mountain"></i> MTB / Mountain Bike</a>
+            <a href="#" class="nav-cat-link" data-category="RUTA"><i class="fa-solid fa-road"></i> Ruta / Gravel</a>
+            <a href="#" class="nav-cat-link" data-category="BMX"><i class="fa-solid fa-bolt"></i> BMX</a>
+            <a href="#" class="nav-cat-link" data-category="URBANA"><i class="fa-solid fa-city"></i> Urbanas</a>
+          </div>
+        </div>
+
+        <!-- Accessories Dropdown (Opens Catalog view directly) -->
+        <div class="dropdown">
+          <button class="dropdown-btn nav-link" id="navAccBtn" data-view="catalog" data-category="CASCOS">
+            <i class="fa-solid fa-shield-halved"></i> Accesorios <i class="fa-solid fa-chevron-down arrow"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#" class="nav-cat-link" data-category="CASCOS"><i class="fa-solid fa-helmet-safety"></i> Cascos</a>
+            <a href="#" class="nav-cat-link" data-category="INDUMENTARIA"><i class="fa-solid fa-shirt"></i> Indumentaria</a>
+            <a href="#" class="nav-cat-link" data-category="COMPONENTES"><i class="fa-solid fa-gears"></i> Componentes</a>
+          </div>
+        </div>
+
+        <a href="#service" class="nav-link" data-view="service"><i class="fa-solid fa-wrench"></i> Taller & Service</a>
+        <a href="#nosotros" class="nav-link" data-view="about"><i class="fa-solid fa-location-dot"></i> Showroom</a>
+      </nav>
+
+      <!-- Right Action Items (Clean navbar: Cart + Admin panel) -->
+      <div class="nav-actions">
+        <!-- Shopping Cart Drawer Trigger -->
+        <button class="btn-cart-nav" id="openCartDrawerBtn" title="Ver Carrito de Compras">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge-count" id="cartBadgeCount">0</span>
+        </button>
+
+        <button class="btn-icon-admin" id="openAdminViewBtn" title="Panel de Administración /admin">
+          <i class="fa-solid fa-user-gear"></i>
+          <span class="admin-badge-text">/admin</span>
+        </button>
+
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN MULTI-VIEW PAGE CONTAINER -->
+  <main id="mainContainer">
+
+    <!-- PAGE 1: INICIO / HOME PAGE -->
+    <section id="homeView" class="view-section active">
+      <!-- Danti Bikes Hero Banner -->
+      <div class="hero-section">
+        <div class="hero-backdrop"></div>
+        <div class="hero-content">
+          <div class="hero-tag">
+            <i class="fa-solid fa-bicycle"></i> DANTI BIKES // MARCAS OFICIALES
+          </div>
+          <h1 class="hero-title">TU BICICLETA IDEAL Y EL MEJOR <span class="highlight-orange">SERVICE TÉCNICO</span></h1>
+          <p class="hero-subtitle">
+            Bicicletas de alta gama, componentes de precisión y taller especializado. Garantía oficial y asesoramiento por ciclistas expertos.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn-hero-primary" id="btnGoToCatalog"><i class="fa-solid fa-bicycle"></i> Ver Catálogo de Bicicletas <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="btn-hero-secondary" id="btnGoToService"><i class="fa-solid fa-gears"></i> Turnos de Taller Mecánico</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danti Engineering Pillars -->
+      <div class="danti-pillars-section">
+        <div class="danti-pillars-container">
+          <div class="pillars-grid">
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-certificate"></i></div>
+              <div class="pillar-info">
+                <h4>Bicicletas 0km Nuevas</h4>
+                <p>Modelos 100% nuevos de las marcas oficiales Moove, Zest, PRK, Samurai y Venzo.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+              <div class="pillar-info">
+                <h4>Taller Especializado</h4>
+                <p>Mantenimiento preventivo, calibración de transmisiones y puesta a punto integral.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-box-check"></i></div>
+              <div class="pillar-info">
+                <h4>Despachos Asegurados</h4>
+                <p>Envíos protegidos con embalaje especial de transporte a todo el país.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-user-check"></i></div>
+              <div class="pillar-info">
+                <h4>Atención Personalizada</h4>
+                <p>Asesoramiento directo para elegir el talle y modelo perfecto para vos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infinite Marquee Brand Carousel (Logos de Marcas: MOOVE, ZEST, PRK, SAMURAI, VENZO) -->
+      <div class="brands-marquee-section">
+        <div class="section-header">
+          <span class="tech-tag"><i class="fa-solid fa-shield-check"></i> MARCAS OFICIALES</span>
+          <h2>LOGOS DE NUESTRAS <span class="highlight-orange">MARCAS</span></h2>
+        </div>
+
+        <div class="marquee-wrapper">
+          <div class="marquee-track">
+            <div class="brand-marquee-card" data-brand="MOOVE"><img src="assets/brand_moove.svg" alt="MOOVE Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="ZEST"><img src="assets/brand_zest.svg" alt="ZEST Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="PRK"><img src="assets/brand_prk.svg" alt="PRK Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="SAMURAI"><img src="assets/brand_samurai.svg" alt="SAMURAI Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="VENZO"><img src="assets/brand_venzo.svg" alt="VENZO Logo" class="brand-logo-svg"></div>
+            <!-- Seamless loop duplicate -->
+            <div class="brand-marquee-card" data-brand="MOOVE"><img src="assets/brand_moove.svg" alt="MOOVE Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="ZEST"><img src="assets/brand_zest.svg" alt="ZEST Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="PRK"><img src="assets/brand_prk.svg" alt="PRK Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="SAMURAI"><img src="assets/brand_samurai.svg" alt="SAMURAI Logo" class="brand-logo-svg"></div>
+            <div class="brand-marquee-card" data-brand="VENZO"><img src="assets/brand_venzo.svg" alt="VENZO Logo" class="brand-logo-svg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Danti Showcase Banners -->
+      <div class="danti-showcase-section">
+        <div class="section-header">
+          <span class="tech-tag"><i class="fa-solid fa-store"></i> NUESTROS SERVICIOS & SHOWROOM</span>
+          <h2>TODO LO QUE NECESITÁS PARA TU <span class="highlight-orange">BICICLETA</span></h2>
+        </div>
+
+        <div class="showcase-grid">
+          <div class="showcase-card" id="solutionCardBikes">
+            <div class="showcase-bg" style="background-image: url('assets/specialized_chisel.jpg');"></div>
+            <div class="showcase-overlay">
+              <span class="showcase-tag">BICICLETAS NUEVAS 0KM</span>
+              <h3 class="showcase-title">CATÁLOGO DE BICICLETAS</h3>
+              <p class="showcase-desc">Explorá los modelos MTB, Urbanas, Ruta y BMX de las marcas oficiales Moove, Zest, PRK, Samurai y Venzo.</p>
+              <button class="btn-showcase-action">Ver Bicicletas Disponibles <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <div class="showcase-card" id="solutionCardService">
+            <div class="showcase-bg" style="background-image: url('assets/cannondale_road.jpg');"></div>
+            <div class="showcase-overlay">
+              <span class="showcase-tag">MANTENIMIENTO INTEGRAL</span>
+              <h3 class="showcase-title">TALLER & SERVICE MECÁNICO</h3>
+              <ul class="showcase-checklist">
+                <li><i class="fa-solid fa-circle-check accent-text"></i> Mantenimiento preventivo e integral de bicicletas</li>
+                <li><i class="fa-solid fa-circle-check accent-text"></i> Ajuste y calibración de transmisiones y frenos</li>
+                <li><i class="fa-solid fa-circle-check accent-text"></i> Purgado hidráulico y reemplazo de pastillas</li>
+                <li><i class="fa-solid fa-circle-check accent-text"></i> Centrado de ruedas y cambio de repuestos</li>
+              </ul>
+              <button class="btn-showcase-action">Agendar Turno de Taller <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Bikes Preview Grid -->
+      <div class="featured-preview-section">
+        <div class="section-header">
+          <span class="tech-tag"><i class="fa-solid fa-fire"></i> MODELOS DESTACADOS</span>
+          <h2>RECOMENDADOS DEL <span class="highlight-orange">SHOWROOM</span></h2>
+        </div>
+        <div class="product-grid" id="homeFeaturedGrid">
+          <!-- Populated by JS with featured bikes -->
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+          <button class="btn-hero-primary" id="btnSeeAllCatalog"><i class="fa-solid fa-bicycle"></i> Abrir Catálogo Completo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2: CATÁLOGO DE BICICLETAS -->
+    <section id="catalogView" class="view-section hidden">
+      <div class="catalog-page-header">
+        <div class="catalog-header-content">
+          <span class="tech-tag"><i class="fa-solid fa-store"></i> SHOWROOM DIGITAL DANTI BIKES</span>
+          <h2>CATÁLOGO DE <span class="highlight-orange">BICICLETAS</span></h2>
+          <p>Filtrá por marca (Moove, Zest, PRK, Samurai, Venzo), categoría, rodado o talle. Consultá por WhatsApp o agregá al carrito.</p>
+          
+          <!-- SEARCH BAR INSIDE CATALOG PAGE -->
+          <div class="catalog-search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="catalogSearchInput" placeholder="Buscar por marca (Moove, Venzo, Samurai, etc), modelo o rodado..." aria-label="Buscar en el catálogo">
+            <button class="btn-search-catalog" id="btnSearchCatalog"><i class="fa-solid fa-search"></i> Buscar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-section">
+        <div class="catalog-container">
+
+          <!-- Mobile Filter Bar Toggle -->
+          <div class="mobile-filter-bar">
+            <button class="btn-mobile-filter" id="toggleMobileFilterBtn">
+              <i class="fa-solid fa-sliders"></i> Filtrar Productos (<span id="activeFilterCount">0</span>)
+            </button>
+            <div class="sort-selector-mobile">
+              <select id="sortSelectMobile" aria-label="Ordenar productos en móvil">
+                <option value="featured">Destacados primero</option>
+                <option value="price-asc">Precio: Menor a Mayor</option>
+                <option value="price-desc">Precio: Mayor a Menor</option>
+                <option value="model-asc">Modelo (A-Z)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Sidebar Filters Panel -->
+          <aside class="filter-sidebar" id="filterSidebar">
+            <div class="filter-header">
+              <h3><i class="fa-solid fa-filter"></i> FILTRAR POR</h3>
+              <button class="btn-clear-filters" id="clearFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Limpiar</button>
+            </div>
+
+            <!-- Filter: Category Buttons -->
+            <div class="filter-group">
+              <label class="filter-label">Categoría</label>
+              <div class="category-pills">
+                <button class="pill-btn active" data-cat="ALL">Todas</button>
+                <button class="pill-btn" data-cat="MTB">MTB</button>
+                <button class="pill-btn" data-cat="RUTA">Ruta</button>
+                <button class="pill-btn" data-cat="BMX">BMX</button>
+                <button class="pill-btn" data-cat="URBANA">Urbana</button>
+                <button class="pill-btn" data-cat="CASCOS">Cascos</button>
+                <button class="pill-btn" data-cat="COMPONENTES">Componentes</button>
+              </div>
+            </div>
+
+            <!-- Filter: Brand (Moove, Zest, PRK, Samurai, Venzo) -->
+            <div class="filter-group">
+              <label class="filter-label" for="filterBrand">Marca Oficial</label>
+              <select id="filterBrand" class="filter-select">
+                <option value="ALL">Todas las marcas</option>
+                <option value="MOOVE">MOOVE</option>
+                <option value="ZEST">ZEST</option>
+                <option value="PRK">PRK</option>
+                <option value="SAMURAI">SAMURAI</option>
+                <option value="VENZO">VENZO</option>
+              </select>
+            </div>
+
+            <!-- Filter: Wheel Size (Rodado) -->
+            <div class="filter-group">
+              <label class="filter-label">Rodado</label>
+              <div class="checkbox-grid">
+                <label class="custom-checkbox">
+                  <input type="checkbox" name="wheelSize" value="26&quot;">
+                  <span class="checkmark"></span>
+                  Rodado 26"
+                </label>
+                <label class="custom-checkbox">
+                  <input type="checkbox" name="wheelSize" value="27.5&quot;">
+                  <span class="checkmark"></span>
+                  Rodado 27.5"
+                </label>
+                <label class="custom-checkbox">
+                  <input type="checkbox" name="wheelSize" value="29&quot;">
+                  <span class="checkmark"></span>
+                  Rodado 29"
+                </label>
+              </div>
+            </div>
+
+            <!-- Filter: Frame Size (Talle) -->
+            <div class="filter-group">
+              <label class="filter-label">Talle de Cuadro</label>
+              <div class="size-buttons">
+                <button class="size-btn" data-size="S">S</button>
+                <button class="size-btn" data-size="M">M</button>
+                <button class="size-btn" data-size="L">L</button>
+                <button class="size-btn" data-size="XL">XL</button>
+              </div>
+            </div>
+
+            <!-- Filter: Color -->
+            <div class="filter-group">
+              <label class="filter-label" for="filterColor">Color Principal</label>
+              <select id="filterColor" class="filter-select">
+                <option value="ALL">Todos los colores</option>
+                <option value="Negro">Negro / Dark</option>
+                <option value="Naranja">Naranja Danti</option>
+                <option value="Gris">Gris / Silver</option>
+                <option value="Rojo">Rojo</option>
+                <option value="Azul">Azul</option>
+              </select>
+            </div>
+
+          </aside>
+
+          <!-- Main Product Grid Container -->
+          <div class="catalog-main">
+            <!-- Header Bar above Grid -->
+            <div class="grid-header">
+              <div class="results-count">
+                Mostrando <strong id="productResultsCount">0</strong> bicicletas y accesorios
+              </div>
+              <div class="grid-sort">
+                <label for="sortSelect">Ordenar por:</label>
+                <select id="sortSelect" class="filter-select-sm">
+                  <option value="featured">Destacados primero</option>
+                  <option value="price-asc">Precio: Menor a Mayor</option>
+                  <option value="price-desc">Precio: Mayor a Menor</option>
+                  <option value="model-asc">Modelo (A-Z)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div class="product-grid" id="productGrid">
+              <!-- Dynamically populated by app.js -->
+            </div>
+
+            <!-- Empty State Container -->
+            <div class="empty-state hidden" id="emptyState">
+              <i class="fa-solid fa-bicycle-slash icon-empty"></i>
+              <h3>No se encontraron bicicletas con los criterios aplicados</h3>
+              <p>Ajustá los filtros o consultá directo al showroom por WhatsApp.</p>
+              <button class="btn-hero-primary" id="emptyResetFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Restablecer Filtros</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: TALLER & SERVICE PAGE -->
+    <section id="serviceView" class="view-section hidden">
+      <div class="service-section">
+        <div class="service-container">
+          <div class="service-header">
+            <span class="tech-tag"><i class="fa-solid fa-wrench"></i> TALLER MECÁNICO & PUESTA A PUNTO</span>
+            <h2>SERVICE OFICIAL <span class="highlight-orange">DANTI BIKES</span></h2>
+            <p>Mantenimiento preventivo y correctivo para bicicletas MTB, Ruta, Urbanas y BMX.</p>
+          </div>
+
+          <div class="service-grid">
+            <div class="service-card">
+              <div class="service-icon"><i class="fa-solid fa-sliders"></i></div>
+              <h3>Service de Horquilla & Suspensión</h3>
+              <p>Mantenimiento preventivo, cambio de fluidos y reemplazo de retenes en suspensiones.</p>
+              <span class="service-price">Desde $ 45.000 ARS</span>
+            </div>
+
+            <div class="service-card highlight">
+              <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
+              <h3>Puesta a Punto Transmisión</h3>
+              <p>Calibración de cambios Shimano / SRAM, desengrasado profundo y alineación de pata de cambio.</p>
+              <span class="service-price">Desde $ 28.000 ARS</span>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon"><i class="fa-solid fa-circle-dot"></i></div>
+              <h3>Purgado y Service de Frenos</h3>
+              <p>Cambio de fluido mineral/DOT, rectificado de discos y reemplazo de pastillas hidráulicas.</p>
+              <span class="service-price">Desde $ 22.000 ARS</span>
+            </div>
+          </div>
+
+          <div class="service-cta-box">
+            <a href="https://wa.me/5493411234567?text=Hola%20Danti%20Bikes,%20quisiera%20agendar%20un%20turno%20de%20service%20para%20mi%20bicicleta." target="_blank" class="btn-whatsapp-large">
+              <i class="fa-brands fa-whatsapp"></i> AGENDAR TURNO DE SERVICE POR WHATSAPP
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: NOSOTROS & SHOWROOM PAGE -->
+    <section id="aboutView" class="view-section hidden">
+      <div class="about-section">
+        <div class="about-container">
+          <div class="about-info">
+            <span class="tech-tag"><i class="fa-solid fa-location-dot"></i> SHOWROOM OFICIAL</span>
+            <h2>CONOCÉ DANTI <span class="highlight-orange">BIKES</span></h2>
+            <p>Trabajamos con las marcas oficiales <strong>Moove, Zest, PRK, Samurai y Venzo</strong>, ofreciendo bicicletas 0km, repuestos originales, accesorios y servicio técnico especializado.</p>
+            
+            <div class="about-features">
+              <div class="feat-item"><i class="fa-solid fa-shield-check"></i> <span>Garantía escrita en todos los modelos nuevos.</span></div>
+              <div class="feat-item"><i class="fa-solid fa-truck-fast"></i> <span>Despachos asegurados a todo el territorio argentino.</span></div>
+              <div class="feat-item"><i class="fa-solid fa-credit-card"></i> <span>Financiación en cuotas fijas y descuentos contado efectivo.</span></div>
+            </div>
+
+            <div class="social-links">
+              <a href="https://www.instagram.com/dantibikes/?hl=es" target="_blank" class="btn-social-ig">
+                <i class="fa-brands fa-instagram"></i> @dantibikes en Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOPPING CART DRAWER -->
+    <div id="cartDrawer" class="cart-drawer-overlay hidden" role="dialog" aria-modal="true">
+      <div class="cart-drawer-card">
+        <div class="cart-drawer-header">
+          <h3><i class="fa-solid fa-cart-shopping highlight-orange"></i> MI CARRITO DE COMPRAS</h3>
+          <button class="cart-close-btn" id="closeCartDrawerBtn" aria-label="Cerrar Carrito">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="cart-drawer-body" id="cartDrawerBody">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="cart-drawer-footer">
+          <div class="cart-total-row">
+            <span>Total Estimado:</span>
+            <span class="cart-total-price" id="cartTotalPrice">$ 0 ARS</span>
+          </div>
+          <p class="cart-disclaimer"><i class="fa-solid fa-shield-check"></i> Pago 100% seguro vía Mercado Pago o WhatsApp</p>
+          <button class="btn-whatsapp-large" id="btnCheckoutWhatsApp" style="width:100%; justify-content:center">
+            <i class="fa-brands fa-whatsapp"></i> FINALIZAR PEDIDO POR WHATSAPP
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT DETAIL MODAL / OVERLAY -->
+    <div id="productDetailModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+      <div class="modal-card">
+        <button class="modal-close-btn" id="closeDetailModalBtn" aria-label="Cerrar modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-body" id="modalProductBody">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 5: ADMIN MANAGEMENT PANEL VIEW (/admin) -->
+    <section id="adminView" class="view-section hidden">
+      <div class="admin-container">
+        
+        <!-- Admin Top Navigation & Status -->
+        <div class="admin-header">
+          <div class="admin-title-group">
+            <span class="admin-badge"><i class="fa-solid fa-lock"></i> PANEL DE CONTROL DE INVENTARIO</span>
+            <h2>ADMINISTRACIÓN <span class="highlight-orange">DANTI BIKES</span></h2>
+            <p>Sesión activa: <span class="admin-email">admin@dantibikes.com</span></p>
+          </div>
+          <div class="admin-nav-actions">
+            <button class="btn-hero-secondary" id="exitAdminViewBtn"><i class="fa-solid fa-store"></i> Volver a la Tienda</button>
+          </div>
+        </div>
+
+        <!-- Dashboard Metrics Bar -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon"><i class="fa-solid fa-bicycle"></i></div>
+            <div class="metric-data">
+              <span class="metric-num" id="metricTotalBikes">0</span>
+              <span class="metric-label">Total Productos</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon accent"><i class="fa-solid fa-boxes-stacked"></i></div>
+            <div class="metric-data">
+              <span class="metric-num" id="metricInStock">0</span>
+              <span class="metric-label">En Stock</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon highlight"><i class="fa-solid fa-star"></i></div>
+            <div class="metric-data">
+              <span class="metric-num" id="metricFeatured">0</span>
+              <span class="metric-label">Destacados Home</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon wa"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="metric-data">
+              <span class="metric-num">24</span>
+              <span class="metric-label">Consultas WhatsApp Hoy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRUD Form + Inventory Table Split -->
+        <div class="admin-layout">
+          
+          <!-- CRUD Product Form -->
+          <div class="admin-form-card">
+            <div class="card-title-bar">
+              <h3 id="adminFormTitle"><i class="fa-solid fa-plus-circle"></i> Cargar Nuevo Producto</h3>
+              <button type="button" class="btn-reset-form" id="resetAdminFormBtn">Restablecer Formulario</button>
+            </div>
+
+            <form id="adminProductForm" class="crud-form">
+              <input type="hidden" id="adminProductId">
+
+              <div class="form-row">
+                <div class="form-field full">
+                  <label for="adminModel">Modelo del Producto *</label>
+                  <input type="text" id="adminModel" required placeholder="Ej: Venzo Raptor EX R29&quot;">
+                </div>
+              </div>
+
+              <div class="form-row split-2">
+                <div class="form-field">
+                  <label for="adminBrand">Marca Oficial *</label>
+                  <select id="adminBrand" required>
+                    <option value="MOOVE">MOOVE</option>
+                    <option value="ZEST">ZEST</option>
+                    <option value="PRK">PRK</option>
+                    <option value="SAMURAI">SAMURAI</option>
+                    <option value="VENZO">VENZO</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="adminCategory">Categoría *</label>
+                  <select id="adminCategory" required>
+                    <option value="MTB">MTB / Mountain Bike</option>
+                    <option value="RUTA">Ruta / Gravel</option>
+                    <option value="BMX">BMX</option>
+                    <option value="URBANA">Urbana</option>
+                    <option value="CASCOS">Accesorios - Cascos</option>
+                    <option value="COMPONENTES">Accesorios - Componentes</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row split-3">
+                <div class="form-field">
+                  <label for="adminWheelSize">Rodado</label>
+                  <select id="adminWheelSize">
+                    <option value="29&quot;">29"</option>
+                    <option value="27.5&quot;">27.5"</option>
+                    <option value="26&quot;">26"</option>
+                    <option value="N/A">N/A (Accesorio)</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="adminFrameSize">Talle de Cuadro</label>
+                  <select id="adminFrameSize">
+                    <option value="M">M</option>
+                    <option value="S">S</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="Único">Único</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="adminColor">Color</label>
+                  <input type="text" id="adminColor" placeholder="Ej: Negro / Naranja">
+                </div>
+              </div>
+
+              <div class="form-row split-2">
+                <div class="form-field">
+                  <label for="adminPrice">Precio en ARS ($) *</label>
+                  <input type="number" id="adminPrice" required min="0" step="1000" placeholder="890000">
+                </div>
+
+                <div class="form-field">
+                  <label for="adminStock">Stock Disponible *</label>
+                  <input type="number" id="adminStock" required min="0" value="1">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field full">
+                  <label for="adminImage">URL de la Imagen Principal *</label>
+                  <input type="text" id="adminImage" required placeholder="assets/venzo_raptor.jpg">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field full">
+                  <label for="adminSpecs">Ficha Técnica (Cuadro, Transmisión, Frenos, Suspensión, Peso)</label>
+                  <textarea id="adminSpecs" rows="3" placeholder="Ej: Cuadro: Aluminio 6061 | Transmisión: Shimano 2x9v | Frenos: Hidráulicos | Suspensión: Horquilla con bloqueo"></textarea>
+                </div>
+              </div>
+
+              <div class="form-row align-center">
+                <label class="toggle-switch-label">
+                  <input type="checkbox" id="adminFeatured">
+                  <span class="toggle-slider"></span>
+                  <span><i class="fa-solid fa-star accent-star"></i> Producto Destacado en Inicio</span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-hero-primary" id="saveProductBtn">
+                  <i class="fa-solid fa-floppy-disk"></i> Guardar Producto
+                </button>
+                <button type="button" class="btn-hero-secondary" id="cancelEditBtn" style="display:none;">
+                  Cancelar Edición
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Product Table / Inventory List -->
+          <div class="admin-table-card">
+            <div class="card-title-bar">
+              <h3><i class="fa-solid fa-list-check"></i> Inventario de Productos</h3>
+              <input type="text" id="adminTableSearch" placeholder="Filtrar inventario..." class="table-search-input">
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Foto</th>
+                    <th>Modelo & Marca</th>
+                    <th>Categoría</th>
+                    <th>Rodado / Talle</th>
+                    <th>Precio (ARS)</th>
+                    <th>Stock</th>
+                    <th>Destacado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="adminProductTableBody">
+                  <!-- Dynamically populated by app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- DANTI DUAL FLOATING SOCIAL STACK (Instagram + WhatsApp) -->
+  <div class="floating-social-stack">
+    <a href="https://www.instagram.com/dantibikes/?hl=es" target="_blank" class="floating-social-btn instagram" title="Ver Instagram @dantibikes">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/5493411234567?text=Hola%20Danti%20Bikes,%20quisiera%20consultar%20por%20sus%20productos." target="_blank" class="floating-social-btn whatsapp" title="Chatear por WhatsApp">
+      <div class="wa-pulse"></div>
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Danti Bikes Logo" class="brand-logo-img mb-2" style="width:54px; height:54px;">
+        <span class="brand-name">DANTI <span class="accent-text">BIKES</span></span>
+        <p>Tienda oficial de bicicletas Moove, Zest, PRK, Samurai y Venzo. Servicio técnico especializado, indumentaria y componentes originales.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#" class="footer-nav-link" data-view="home">Inicio</a></li>
+          <li><a href="#" class="footer-nav-link" data-view="catalog" data-category="ALL">Bicicletas</a></li>
+          <li><a href="#" class="footer-nav-link" data-view="service">Taller & Service</a></li>
+          <li><a href="#" class="footer-nav-link" data-view="about">Showroom</a></li>
+          <li><a href="#" class="footer-nav-link" data-view="admin">Acceso /admin</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contacto Directo</h4>
+        <p><i class="fa-brands fa-instagram accent-text"></i> Instagram: <a href="https://www.instagram.com/dantibikes/?hl=es" target="_blank">@dantibikes</a></p>
+        <p><i class="fa-brands fa-whatsapp accent-text"></i> WhatsApp: +54 9 341 123-4567</p>
+        <p><i class="fa-solid fa-clock accent-text"></i> Lunes a Sábados: 09:00 a 19:30 hs</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Danti Bikes. Marcas oficiales: Moove, Zest, PRK, Samurai y Venzo. Paleta cromática exacta del logo oficial Danti Bikes.</p>
+    </div>
+  </footer>
+
+  <!-- App JavaScript logic -->
+  <script src="app.js"></script>
+</body>
+</html>

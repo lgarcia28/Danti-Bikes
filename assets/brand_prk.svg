@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <g transform="translate(20, 10)">
+    <rect x="0" y="4" width="32" height="32" rx="6" fill="#FA9D00" />
+    <path d="M10 12 L10 28 M10 12 L20 12 C24 12 24 20 20 20 L10 20 M16 20 L22 28" stroke="#121214" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="44" y="28" font-family="Montserrat, sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" letter-spacing="5">PRK</text>
+    <text x="44" y="37" font-family="Inter, sans-serif" font-weight="700" font-size="7" fill="#A1A1AA" letter-spacing="2">BIKE PERFORMANCE</text>
+  </g>
+</svg>

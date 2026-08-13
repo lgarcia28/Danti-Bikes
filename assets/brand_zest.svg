@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <g transform="translate(15, 12)">
+    <!-- Z Icon Badge -->
+    <path d="M0 0 L32 0 L8 32 L34 32" stroke="#FA9D00" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" />
+    <text x="48" y="26" font-family="Montserrat, sans-serif" font-weight="900" font-size="26" fill="#FFFFFF" letter-spacing="4">ZEST</text>
+    <text x="48" y="35" font-family="JetBrains Mono, monospace" font-weight="700" font-size="8" fill="#FA9D00" letter-spacing="3">RACING COMPONENTS</text>
+  </g>
+</svg>

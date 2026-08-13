@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <g transform="translate(15, 12)">
+    <!-- VENZO Wing V Symbol -->
+    <path d="M0 0 L14 30 L22 30 L36 0 L24 0 L18 18 L12 0 Z" fill="#FA9D00" />
+    <text x="44" y="24" font-family="Montserrat, sans-serif" font-weight="900" font-size="24" fill="#FFFFFF" letter-spacing="4">VENZO</text>
+    <text x="44" y="33" font-family="JetBrains Mono, monospace" font-weight="700" font-size="8" fill="#A1A1AA" letter-spacing="2">ARGENTINA</text>
+  </g>
+</svg>
