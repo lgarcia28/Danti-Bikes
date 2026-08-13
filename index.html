@@ -158,7 +158,7 @@
         </div>
       </div>
 
-      <!-- Direct Brand Logos Marquee Banner (Only Official Bike Brands: MOOVE, ZEST, PRK, SAMURAI, VENZO) -->
+      <!-- Direct Equalized Brand Logos Marquee Banner (Transparent PNGs) -->
       <div class="brands-marquee-section direct-banner">
         <div class="marquee-wrapper">
           <div class="marquee-track">
@@ -272,7 +272,7 @@
             <!-- Filter: Category Buttons -->
             <div class="filter-group">
               <label class="filter-label">Categoría</label>
-              <div class="category-pills">
+              <div class="category-pills" id="catalogCategoryPills">
                 <button class="pill-btn active" data-cat="ALL">Todas</button>
                 <button class="pill-btn" data-cat="MTB">MTB</button>
                 <button class="pill-btn" data-cat="RUTA">Ruta</button>
@@ -299,7 +299,7 @@
             <!-- Filter: Wheel Size (Rodado) -->
             <div class="filter-group">
               <label class="filter-label">Rodado</label>
-              <div class="checkbox-grid">
+              <div class="checkbox-grid" id="catalogWheelSizeGrid">
                 <label class="custom-checkbox">
                   <input type="checkbox" name="wheelSize" value="26&quot;">
                   <span class="checkmark"></span>
@@ -321,7 +321,7 @@
             <!-- Filter: Frame Size (Talle) -->
             <div class="filter-group">
               <label class="filter-label">Talle de Cuadro</label>
-              <div class="size-buttons">
+              <div class="size-buttons" id="catalogFrameSizeGroup">
                 <button class="size-btn" data-size="S">S</button>
                 <button class="size-btn" data-size="M">M</button>
                 <button class="size-btn" data-size="L">L</button>
@@ -491,7 +491,7 @@
     <section id="adminView" class="view-section hidden">
       <div class="admin-container">
         
-        <!-- Admin Top Navigation & Status -->
+        <!-- Admin Top Navigation & Header -->
         <div class="admin-header">
           <div class="admin-title-group">
             <span class="admin-badge"><i class="fa-solid fa-lock"></i> PANEL DE CONTROL DE INVENTARIO</span>
@@ -499,6 +499,10 @@
             <p>Sesión activa: <span class="admin-email">admin@dantibikes.com</span></p>
           </div>
           <div class="admin-nav-actions">
+            <!-- PROMINENT BUTTON TO OPEN CREATION MODAL -->
+            <button class="btn-hero-primary" id="openAdminModalBtn">
+              <i class="fa-solid fa-plus-circle"></i> + Cargar Nuevo Producto
+            </button>
             <button class="btn-hero-secondary" id="exitAdminViewBtn"><i class="fa-solid fa-store"></i> Volver a la Tienda</button>
           </div>
         </div>
@@ -538,156 +542,220 @@
           </div>
         </div>
 
-        <!-- CRUD Form + Inventory Table Split -->
-        <div class="admin-layout">
-          
-          <!-- CRUD Product Form -->
-          <div class="admin-form-card">
-            <div class="card-title-bar">
-              <h3 id="adminFormTitle"><i class="fa-solid fa-plus-circle"></i> Cargar Nuevo Producto</h3>
-              <button type="button" class="btn-reset-form" id="resetAdminFormBtn">Restablecer Formulario</button>
-            </div>
-
-            <form id="adminProductForm" class="crud-form">
-              <input type="hidden" id="adminProductId">
-
-              <div class="form-row">
-                <div class="form-field full">
-                  <label for="adminModel">Modelo del Producto *</label>
-                  <input type="text" id="adminModel" required placeholder="Ej: Venzo Raptor EX R29&quot;">
-                </div>
-              </div>
-
-              <div class="form-row split-2">
-                <div class="form-field">
-                  <label for="adminBrand">Marca Oficial *</label>
-                  <select id="adminBrand" required>
-                    <option value="MOOVE">MOOVE</option>
-                    <option value="ZEST">ZEST</option>
-                    <option value="PRK">PRK</option>
-                    <option value="SAMURAI">SAMURAI</option>
-                    <option value="VENZO">VENZO</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label for="adminCategory">Categoría *</label>
-                  <select id="adminCategory" required>
-                    <option value="MTB">MTB / Mountain Bike</option>
-                    <option value="RUTA">Ruta / Gravel</option>
-                    <option value="BMX">BMX</option>
-                    <option value="URBANA">Urbana</option>
-                    <option value="CASCOS">Accesorios - Cascos</option>
-                    <option value="COMPONENTES">Accesorios - Componentes</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row split-3">
-                <div class="form-field">
-                  <label for="adminWheelSize">Rodado</label>
-                  <select id="adminWheelSize">
-                    <option value="29&quot;">29"</option>
-                    <option value="27.5&quot;">27.5"</option>
-                    <option value="26&quot;">26"</option>
-                    <option value="N/A">N/A (Accesorio)</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label for="adminFrameSize">Talle de Cuadro</label>
-                  <select id="adminFrameSize">
-                    <option value="M">M</option>
-                    <option value="S">S</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="Único">Único</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label for="adminColor">Color</label>
-                  <input type="text" id="adminColor" placeholder="Ej: Negro / Naranja">
-                </div>
-              </div>
-
-              <div class="form-row split-2">
-                <div class="form-field">
-                  <label for="adminPrice">Precio en ARS ($) *</label>
-                  <input type="number" id="adminPrice" required min="0" step="1000" placeholder="890000">
-                </div>
-
-                <div class="form-field">
-                  <label for="adminStock">Stock Disponible *</label>
-                  <input type="number" id="adminStock" required min="0" value="1">
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-field full">
-                  <label for="adminImage">URL de la Imagen Principal *</label>
-                  <input type="text" id="adminImage" required placeholder="assets/venzo_raptor.jpg">
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-field full">
-                  <label for="adminSpecs">Ficha Técnica (Cuadro, Transmisión, Frenos, Suspensión, Peso)</label>
-                  <textarea id="adminSpecs" rows="3" placeholder="Ej: Cuadro: Aluminio 6061 | Transmisión: Shimano 2x9v | Frenos: Hidráulicos | Suspensión: Horquilla con bloqueo"></textarea>
-                </div>
-              </div>
-
-              <div class="form-row align-center">
-                <label class="toggle-switch-label">
-                  <input type="checkbox" id="adminFeatured">
-                  <span class="toggle-slider"></span>
-                  <span><i class="fa-solid fa-star accent-star"></i> Producto Destacado en Inicio</span>
-                </label>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="btn-hero-primary" id="saveProductBtn">
-                  <i class="fa-solid fa-floppy-disk"></i> Guardar Producto
-                </button>
-                <button type="button" class="btn-hero-secondary" id="cancelEditBtn" style="display:none;">
-                  Cancelar Edición
-                </button>
-              </div>
-            </form>
+        <!-- Product Inventory Full Width Table -->
+        <div class="admin-table-card full-width">
+          <div class="card-title-bar">
+            <h3><i class="fa-solid fa-list-check"></i> Inventario de Productos</h3>
+            <input type="text" id="adminTableSearch" placeholder="Filtrar inventario..." class="table-search-input">
           </div>
 
-          <!-- Product Table / Inventory List -->
-          <div class="admin-table-card">
-            <div class="card-title-bar">
-              <h3><i class="fa-solid fa-list-check"></i> Inventario de Productos</h3>
-              <input type="text" id="adminTableSearch" placeholder="Filtrar inventario..." class="table-search-input">
-            </div>
-
-            <div class="table-responsive">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Foto</th>
-                    <th>Modelo & Marca</th>
-                    <th>Categoría</th>
-                    <th>Rodado / Talle</th>
-                    <th>Precio (ARS)</th>
-                    <th>Stock</th>
-                    <th>Destacado</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody id="adminProductTableBody">
-                  <!-- Dynamically populated by app.js -->
-                </tbody>
-              </table>
-            </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Foto</th>
+                  <th>Modelo & Marca</th>
+                  <th>Categoría</th>
+                  <th>Rodado / Talle</th>
+                  <th>Colores</th>
+                  <th>Precio (ARS)</th>
+                  <th>Stock</th>
+                  <th>Destacado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="adminProductTableBody">
+                <!-- Dynamically populated by app.js -->
+              </tbody>
+            </table>
           </div>
-
         </div>
 
       </div>
     </section>
+
+    <!-- ADMIN PRODUCT CREATION & EDITING MODAL OVERLAY -->
+    <div id="adminProductModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+      <div class="modal-card admin-modal-card">
+        <button class="modal-close-btn" id="closeAdminModalBtn" aria-label="Cerrar modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-body">
+          <div class="card-title-bar">
+            <h3 id="adminFormTitle"><i class="fa-solid fa-plus-circle highlight-orange"></i> Cargar Nuevo Producto</h3>
+            <button type="button" class="btn-reset-form" id="resetAdminFormBtn"><i class="fa-solid fa-rotate-left"></i> Limpiar Formulario</button>
+          </div>
+
+          <form id="adminProductForm" class="crud-form">
+            <input type="hidden" id="adminProductId">
+
+            <!-- Model Title -->
+            <div class="form-row">
+              <div class="form-field full">
+                <label for="adminModel">Modelo del Producto *</label>
+                <input type="text" id="adminModel" required placeholder="Ej: Venzo Raptor EX R29&quot;">
+              </div>
+            </div>
+
+            <!-- Brand & Category with Dynamic Custom Adding -->
+            <div class="form-row split-2">
+              <div class="form-field">
+                <div class="label-with-action">
+                  <label for="adminBrand">Marca Oficial *</label>
+                  <button type="button" class="btn-add-custom-option" id="btnAddCustomBrand">+ Otra Marca</button>
+                </div>
+                <select id="adminBrand" required>
+                  <option value="MOOVE">MOOVE</option>
+                  <option value="ZEST">ZEST</option>
+                  <option value="PRK">PRK</option>
+                  <option value="SAMURAI">SAMURAI</option>
+                  <option value="VENZO">VENZO</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <div class="label-with-action">
+                  <label for="adminCategory">Categoría *</label>
+                  <button type="button" class="btn-add-custom-option" id="btnAddCustomCategory">+ Otra Categoría</button>
+                </div>
+                <select id="adminCategory" required>
+                  <option value="MTB">MTB / Mountain Bike</option>
+                  <option value="RUTA">Ruta / Gravel</option>
+                  <option value="BMX">BMX</option>
+                  <option value="URBANA">Urbana</option>
+                  <option value="CASCOS">Accesorios - Cascos</option>
+                  <option value="COMPONENTES">Accesorios - Componentes</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Wheel Size & Frame Size with Dynamic Custom Adding -->
+            <div class="form-row split-2">
+              <div class="form-field">
+                <div class="label-with-action">
+                  <label for="adminWheelSize">Rodado</label>
+                  <button type="button" class="btn-add-custom-option" id="btnAddCustomWheelSize">+ Otro Rodado</button>
+                </div>
+                <select id="adminWheelSize">
+                  <option value="29&quot;">29"</option>
+                  <option value="27.5&quot;">27.5"</option>
+                  <option value="26&quot;">26"</option>
+                  <option value="24&quot;">24"</option>
+                  <option value="20&quot;">20"</option>
+                  <option value="N/A">N/A (Accesorio)</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <div class="label-with-action">
+                  <label for="adminFrameSize">Talle de Cuadro</label>
+                  <button type="button" class="btn-add-custom-option" id="btnAddCustomFrameSize">+ Otro Talle</button>
+                </div>
+                <select id="adminFrameSize">
+                  <option value="M">M</option>
+                  <option value="S">S</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="Único">Único</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Price & Stock -->
+            <div class="form-row split-2">
+              <div class="form-field">
+                <label for="adminPrice">Precio en ARS ($) *</label>
+                <input type="number" id="adminPrice" required min="0" step="1000" placeholder="890000">
+              </div>
+
+              <div class="form-field">
+                <label for="adminStock">Stock Disponible *</label>
+                <input type="number" id="adminStock" required min="0" value="1">
+              </div>
+            </div>
+
+            <!-- Color Palette Dual Select (Color Principal + Color Secundario) -->
+            <div class="form-row split-2">
+              <div class="form-field">
+                <label for="adminColorPrimaryName">Color Principal *</label>
+                <div class="color-picker-input-group">
+                  <input type="color" id="adminColorPrimaryPicker" value="#FA9D00" class="color-picker-thumb">
+                  <input type="text" id="adminColorPrimaryName" required placeholder="Ej: Naranja Danti" class="color-name-input">
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="adminColorSecondaryName">Color Secundario (Opcional)</label>
+                <div class="color-picker-input-group">
+                  <input type="color" id="adminColorSecondaryPicker" value="#121214" class="color-picker-thumb">
+                  <input type="text" id="adminColorSecondaryName" placeholder="Ej: Negro Matte" class="color-name-input">
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Image URL -->
+            <div class="form-row">
+              <div class="form-field full">
+                <label for="adminImage">URL o Ruta de la Imagen Principal *</label>
+                <input type="text" id="adminImage" required placeholder="assets/venzo_raptor.jpg">
+              </div>
+            </div>
+
+            <!-- Structured Technical Specifications (Separated Items) -->
+            <div class="form-specs-box">
+              <label class="specs-section-label"><i class="fa-solid fa-list-check highlight-orange"></i> FICHA TÉCNICA SEPARADA POR ÍTEMS</label>
+              
+              <div class="specs-fields-grid">
+                <div class="form-field">
+                  <label for="adminSpecCuadro"><i class="fa-solid fa-bicycle"></i> Cuadro</label>
+                  <input type="text" id="adminSpecCuadro" placeholder="Ej: Aluminio 6061 Hidroformado Cableado Interno">
+                </div>
+
+                <div class="form-field">
+                  <label for="adminSpecTransmision"><i class="fa-solid fa-gears"></i> Transmisión</label>
+                  <input type="text" id="adminSpecTransmision" placeholder="Ej: Shimano Deore 1x11v Monoplato">
+                </div>
+
+                <div class="form-field">
+                  <label for="adminSpecFrenos"><i class="fa-solid fa-circle-dot"></i> Frenos</label>
+                  <input type="text" id="adminSpecFrenos" placeholder="Ej: Disco Hidráulico Shimano MT200 160mm">
+                </div>
+
+                <div class="form-field">
+                  <label for="adminSpecSuspension"><i class="fa-solid fa-sliders"></i> Suspensión / Horquilla</label>
+                  <input type="text" id="adminSpecSuspension" placeholder="Ej: B1 Team Aire 100mm bloqueo al manubrio">
+                </div>
+
+                <div class="form-field full">
+                  <label for="adminSpecPeso"><i class="fa-solid fa-weight-hanging"></i> Peso Estimado</label>
+                  <input type="text" id="adminSpecPeso" placeholder="Ej: 13.2 kg">
+                </div>
+              </div>
+            </div>
+
+            <!-- Featured Toggle Switch -->
+            <div class="form-row align-center">
+              <label class="toggle-switch-label">
+                <input type="checkbox" id="adminFeatured">
+                <span class="toggle-slider"></span>
+                <span><i class="fa-solid fa-star accent-star"></i> Destacar este producto en la página principal (Home)</span>
+              </label>
+            </div>
+
+            <!-- Form Actions Buttons -->
+            <div class="form-actions">
+              <button type="submit" class="btn-hero-primary" id="saveProductBtn">
+                <i class="fa-solid fa-floppy-disk"></i> Guardar Producto
+              </button>
+              <button type="button" class="btn-hero-secondary" id="cancelEditBtn">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
   </main>
 
