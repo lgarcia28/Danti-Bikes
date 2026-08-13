@@ -552,13 +552,13 @@ button {
   margin-top: 2px;
 }
 
-/* --- DIRECT BRAND LOGOS MARQUEE BANNER (NO CARDS / FLOATING LOGOS TICKER) --- */
+/* --- DIRECT COMPACT BRAND LOGOS MARQUEE BANNER --- */
 .brands-marquee-section.direct-banner {
-  padding: 36px 0;
+  padding: 16px 0;
   background: #141418;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  margin: 45px 0;
+  margin: 24px 0;
   overflow: hidden;
 }
 
@@ -571,7 +571,7 @@ button {
 }
 .marquee-track {
   display: flex;
-  gap: 60px;
+  gap: 40px;
   width: max-content;
   align-items: center;
   animation: marqueeScroll 28s linear infinite;
@@ -585,31 +585,31 @@ button {
   100% { transform: translateX(-50%); }
 }
 
-/* Floating Brand Logo Item - NO CARDS, NO BORDER, NO BACKGROUND */
+/* Floating Brand Logo Item - Compact size */
 .brand-marquee-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 4px;
   cursor: pointer;
   background: transparent;
   border: none;
   box-shadow: none;
 }
 .brand-logo-img-real {
-  height: 48px;
-  max-height: 55px;
+  height: 30px;
+  max-height: 34px;
   width: auto;
-  max-width: 180px;
+  max-width: 130px;
   object-fit: contain;
   opacity: 0.85;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
   transition: all 0.3s ease;
 }
 .brand-marquee-item:hover .brand-logo-img-real {
   opacity: 1;
   transform: scale(1.12);
-  filter: drop-shadow(0 0 15px var(--accent-orange-glow));
+  filter: drop-shadow(0 0 12px var(--accent-orange-glow));
 }
 
 /* --- DANTI SHOWCASE BANNERS --- */
