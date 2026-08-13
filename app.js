@@ -170,13 +170,14 @@ class DantiBikesApp {
 
     this.initDOM();
     this.bindEvents();
+    this.initScrollReveal();
     this.renderCurrentView();
     this.updateCartBadge();
   }
 
   // Load / Save Local Storage
   loadProductsFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_products_v5");
+    const saved = localStorage.getItem("danti_bikes_products_v6");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -184,11 +185,11 @@ class DantiBikesApp {
   }
 
   saveProductsToStorage() {
-    localStorage.setItem("danti_bikes_products_v5", JSON.stringify(this.products));
+    localStorage.setItem("danti_bikes_products_v6", JSON.stringify(this.products));
   }
 
   loadCartFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_cart_v5");
+    const saved = localStorage.getItem("danti_bikes_cart_v6");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -196,7 +197,7 @@ class DantiBikesApp {
   }
 
   saveCartToStorage() {
-    localStorage.setItem("danti_bikes_cart_v5", JSON.stringify(this.cart));
+    localStorage.setItem("danti_bikes_cart_v6", JSON.stringify(this.cart));
   }
 
   // Initialize DOM References
@@ -265,9 +266,10 @@ class DantiBikesApp {
     this.btnAddCustomCategory = document.getElementById("btnAddCustomCategory");
     this.btnAddCustomWheelSize = document.getElementById("btnAddCustomWheelSize");
     this.btnAddCustomFrameSize = document.getElementById("btnAddCustomFrameSize");
-    this.btnOpenCustomColorPicker = document.getElementById("btnOpenCustomColorPicker");
 
-    // Color pickers & inputs
+    // Dual Color Pickers
+    this.btnOpenCustomColorPickerPrimary = document.getElementById("btnOpenCustomColorPickerPrimary");
+    this.btnOpenCustomColorPickerSecondary = document.getElementById("btnOpenCustomColorPickerSecondary");
     this.adminColorPrimaryPicker = document.getElementById("adminColorPrimaryPicker");
     this.adminColorPrimaryName = document.getElementById("adminColorPrimaryName");
     this.adminColorSecondaryPicker = document.getElementById("adminColorSecondaryPicker");
@@ -277,6 +279,19 @@ class DantiBikesApp {
     this.metricTotalBikes = document.getElementById("metricTotalBikes");
     this.metricInStock = document.getElementById("metricInStock");
     this.metricFeatured = document.getElementById("metricFeatured");
+  }
+
+  // Scroll Reveal Observer
+  initScrollReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal-on-scroll").forEach(el => observer.observe(el));
   }
 
   // Bind Event Listeners
@@ -463,24 +478,33 @@ class DantiBikesApp {
     this.btnAddCustomWheelSize?.addEventListener("click", () => this.addCustomOption("adminWheelSize", "rodado"));
     this.btnAddCustomFrameSize?.addEventListener("click", () => this.addCustomOption("adminFrameSize", "talle"));
 
-    // 10 Preset Color Pills Handlers (Single Name)
-    const colorPills = document.querySelectorAll("#colorPresetsGrid .color-preset-pill");
-    colorPills.forEach(pill => {
+    // DUAL COLOR PRESET PILLS HANDLERS (PRIMARY & SECONDARY)
+    const primaryPills = document.querySelectorAll("#primaryColorPresetsGrid .color-preset-pill");
+    primaryPills.forEach(pill => {
       pill.addEventListener("click", () => {
-        colorPills.forEach(p => p.classList.remove("active"));
+        primaryPills.forEach(p => p.classList.remove("active"));
         pill.classList.add("active");
-        
-        const name = pill.dataset.name;
-        const hex = pill.dataset.hex;
-
-        if (this.adminColorPrimaryName) this.adminColorPrimaryName.value = name;
-        if (this.adminColorPrimaryPicker) this.adminColorPrimaryPicker.value = hex;
+        if (this.adminColorPrimaryName) this.adminColorPrimaryName.value = pill.dataset.name;
+        if (this.adminColorPrimaryPicker) this.adminColorPrimaryPicker.value = pill.dataset.hex;
       });
     });
 
-    // Open Custom Color Picker Trigger
-    this.btnOpenCustomColorPicker?.addEventListener("click", () => {
+    const secondaryPills = document.querySelectorAll("#secondaryColorPresetsGrid .color-preset-pill");
+    secondaryPills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        secondaryPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        if (this.adminColorSecondaryName) this.adminColorSecondaryName.value = pill.dataset.name;
+        if (this.adminColorSecondaryPicker) this.adminColorSecondaryPicker.value = pill.dataset.hex;
+      });
+    });
+
+    // Open Custom Color Picker Triggers
+    this.btnOpenCustomColorPickerPrimary?.addEventListener("click", () => {
       if (this.adminColorPrimaryPicker) this.adminColorPrimaryPicker.click();
+    });
+    this.btnOpenCustomColorPickerSecondary?.addEventListener("click", () => {
+      if (this.adminColorSecondaryPicker) this.adminColorSecondaryPicker.click();
     });
   }
 
@@ -533,6 +557,9 @@ class DantiBikesApp {
       this.renderAdminTable();
       this.updateAdminMetrics();
     }
+
+    // Trigger scroll reveal for newly activated view
+    setTimeout(() => this.initScrollReveal(), 100);
   }
 
   renderCurrentView() {
@@ -645,7 +672,7 @@ class DantiBikesApp {
     const colorDisplay = prod.colorSecondary ? `${prod.colorPrimary} / ${prod.colorSecondary}` : (prod.colorPrimary || prod.color || "Negro");
 
     return `
-      <article class="product-card" data-id="${prod.id}">
+      <article class="product-card reveal-on-scroll" data-id="${prod.id}">
         <div class="card-image-wrap">
           <img src="${prod.image}" alt="${prod.model}" class="card-img" loading="lazy">
           <div class="card-badges">
@@ -927,7 +954,7 @@ class DantiBikesApp {
         document.getElementById("adminImage").value = prod.image;
         document.getElementById("adminFeatured").checked = !!prod.featured;
 
-        // Colors
+        // Dual Colors
         this.adminColorPrimaryName.value = prod.colorPrimary || prod.color || "";
         this.adminColorSecondaryName.value = prod.colorSecondary || "";
         if (prod.colorHex) this.adminColorPrimaryPicker.value = prod.colorHex;
@@ -959,7 +986,7 @@ class DantiBikesApp {
     if (this.adminProductId) this.adminProductId.value = "";
     if (this.adminFormTitle) this.adminFormTitle.innerHTML = `<i class="fa-solid fa-plus-circle highlight-orange"></i> Cargar Nuevo Producto`;
     if (this.cancelEditBtn) this.cancelEditBtn.style.display = "none";
-    document.querySelectorAll("#colorPresetsGrid .color-preset-pill").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".color-preset-pill").forEach(p => p.classList.remove("active"));
   }
 
   handleAdminFormSubmit(e) {
@@ -976,7 +1003,7 @@ class DantiBikesApp {
     const image = document.getElementById("adminImage").value.trim() || "assets/venzo_raptor.jpg";
     const featured = document.getElementById("adminFeatured").checked;
 
-    // Single word color names
+    // Dual Colors
     const colorPrimary = this.adminColorPrimaryName.value.trim() || "Naranja";
     const colorSecondary = this.adminColorSecondaryName.value.trim() || "";
     const colorHex = this.adminColorPrimaryPicker.value || "#FA9D00";
@@ -1035,16 +1062,12 @@ class DantiBikesApp {
     if (!this.adminProductTableBody) return;
 
     const filteredList = this.products.filter(p => {
-      // Text search
       if (this.adminFilters.search) {
         const query = this.adminFilters.search.toLowerCase();
         if (!p.model.toLowerCase().includes(query) && !p.brand.toLowerCase().includes(query)) return false;
       }
-      // Brand filter
       if (this.adminFilters.brand !== "ALL" && p.brand !== this.adminFilters.brand) return false;
-      // Category filter
       if (this.adminFilters.category !== "ALL" && p.category !== this.adminFilters.category) return false;
-      // Stock/Featured filter
       if (this.adminFilters.stock === "in-stock" && p.stock <= 0) return false;
       if (this.adminFilters.stock === "featured" && !p.featured) return false;
 

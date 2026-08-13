@@ -84,6 +84,19 @@ button {
   background: none;
 }
 
+/* --- SCROLL REVEAL ANIMATION CLASSES --- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -109,6 +122,8 @@ button {
 .hidden {
   display: none !important;
 }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 14px; }
 
 .tech-tag {
   display: inline-flex;
@@ -322,7 +337,6 @@ button {
   gap: 12px;
 }
 
-/* Cart Button in Nav */
 .btn-cart-nav {
   position: relative;
   background: var(--bg-input);
@@ -679,7 +693,20 @@ button {
   filter: drop-shadow(0 0 16px var(--accent-orange-glow));
 }
 
-/* --- 10 PRESET COLOR PALETTE GRID --- */
+/* --- DUAL COLOR SELECTION SYSTEM (ADMIN MODAL) --- */
+.color-selection-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+.sub-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
 .color-presets-grid {
   display: flex;
   flex-wrap: wrap;
@@ -868,7 +895,7 @@ button {
   margin-bottom: 24px;
 }
 
-/* Prominent Search Box */
+/* Search Box */
 .catalog-search-box {
   width: 100%;
   max-width: 720px;
@@ -1255,7 +1282,6 @@ button {
   font-weight: 600;
 }
 
-/* Fluid, responsive button row */
 .card-btn-group {
   display: flex;
   align-items: center;
@@ -2247,7 +2273,7 @@ button {
 }
 
 /* ==========================================================================
-   ARROYOFITNESS INSPIRED FLUID RESPONSIVE MEDIA QUERIES (MOBILE UX OVERHAUL)
+   MOBILE MEDIA QUERIES (2x2 PILLARS GRID + FLUID LAYOUT)
    ========================================================================== */
 
 @media (max-width: 1024px) {
@@ -2286,7 +2312,6 @@ button {
 }
 
 @media (max-width: 768px) {
-  /* Hide desktop menu & show mobile hamburger toggle */
   .nav-menu {
     display: none;
   }
@@ -2299,7 +2324,6 @@ button {
     display: none;
   }
 
-  /* Compact Hero Section */
   .hero-section {
     padding: 60px 18px 45px 18px;
     min-height: auto;
@@ -2314,14 +2338,35 @@ button {
     padding: 14px 18px;
   }
 
-  /* Compact Pillars & Showcase */
+  /* --- DANTI PILLARS 2x2 MOBILE GRID --- */
   .danti-pillars-section {
     margin-top: 0;
     padding: 20px 16px;
   }
   .pillars-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
+  .pillar-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 14px 10px;
+    gap: 8px;
+    justify-content: center;
+  }
+  .pillar-info p {
+    display: none !important; /* Hide description on mobile per user request */
+  }
+  .pillar-info h4 {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  .pillar-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
   .showcase-grid {
     grid-template-columns: 1fr;
   }
