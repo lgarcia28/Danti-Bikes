@@ -3,7 +3,7 @@
  * Official Brands: MOOVE, ZEST, PRK, SAMURAI, VENZO
  */
 
-// Initial Seed Products Catalog featuring user requested official bike models
+// Initial Seed Products Catalog featuring official bike models
 const INITIAL_PRODUCTS = [
   {
     id: "db-001",
@@ -12,8 +12,8 @@ const INITIAL_PRODUCTS = [
     category: "MTB",
     wheelSize: "29\"",
     frameSize: "M",
-    colorPrimary: "Naranja Danti",
-    colorSecondary: "Negro Matte",
+    colorPrimary: "Naranja",
+    colorSecondary: "Negro",
     colorHex: "#FA9D00",
     condition: "NUEVO",
     price: 890000,
@@ -35,7 +35,7 @@ const INITIAL_PRODUCTS = [
     category: "MTB",
     wheelSize: "29\"",
     frameSize: "L",
-    colorPrimary: "Gris Silver",
+    colorPrimary: "Gris",
     colorSecondary: "Naranja",
     colorHex: "#71717A",
     condition: "NUEVO",
@@ -58,8 +58,8 @@ const INITIAL_PRODUCTS = [
     category: "MTB",
     wheelSize: "29\"",
     frameSize: "M",
-    colorPrimary: "Naranja Danti",
-    colorSecondary: "Negro Matte",
+    colorPrimary: "Naranja",
+    colorSecondary: "Negro",
     colorHex: "#FA9D00",
     condition: "NUEVO",
     price: 920000,
@@ -81,8 +81,8 @@ const INITIAL_PRODUCTS = [
     category: "MTB",
     wheelSize: "29\"",
     frameSize: "L",
-    colorPrimary: "Negro Matte",
-    colorSecondary: "Gris Silver",
+    colorPrimary: "Negro",
+    colorSecondary: "Gris",
     colorHex: "#121214",
     condition: "NUEVO",
     price: 840000,
@@ -104,8 +104,8 @@ const INITIAL_PRODUCTS = [
     category: "MTB",
     wheelSize: "29\"",
     frameSize: "S",
-    colorPrimary: "Rojo Fuego",
-    colorSecondary: "Negro Matte",
+    colorPrimary: "Rojo",
+    colorSecondary: "Negro",
     colorHex: "#EF4444",
     condition: "NUEVO",
     price: 960000,
@@ -127,7 +127,7 @@ const INITIAL_PRODUCTS = [
     category: "RUTA",
     wheelSize: "29\"",
     frameSize: "M",
-    colorPrimary: "Gris Silver",
+    colorPrimary: "Gris",
     colorSecondary: "Negro",
     colorHex: "#71717A",
     condition: "NUEVO",
@@ -161,6 +161,13 @@ class DantiBikesApp {
       sort: "featured"
     };
 
+    this.adminFilters = {
+      brand: "ALL",
+      category: "ALL",
+      stock: "ALL",
+      search: ""
+    };
+
     this.initDOM();
     this.bindEvents();
     this.renderCurrentView();
@@ -169,7 +176,7 @@ class DantiBikesApp {
 
   // Load / Save Local Storage
   loadProductsFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_products_v4");
+    const saved = localStorage.getItem("danti_bikes_products_v5");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -177,11 +184,11 @@ class DantiBikesApp {
   }
 
   saveProductsToStorage() {
-    localStorage.setItem("danti_bikes_products_v4", JSON.stringify(this.products));
+    localStorage.setItem("danti_bikes_products_v5", JSON.stringify(this.products));
   }
 
   loadCartFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_cart_v4");
+    const saved = localStorage.getItem("danti_bikes_cart_v5");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -189,7 +196,7 @@ class DantiBikesApp {
   }
 
   saveCartToStorage() {
-    localStorage.setItem("danti_bikes_cart_v4", JSON.stringify(this.cart));
+    localStorage.setItem("danti_bikes_cart_v5", JSON.stringify(this.cart));
   }
 
   // Initialize DOM References
@@ -207,6 +214,12 @@ class DantiBikesApp {
     this.navLinks = document.querySelectorAll(".nav-link, .nav-cat-link, .footer-nav-link");
     this.cartBadgeCount = document.getElementById("cartBadgeCount");
     
+    // Mobile Drawer
+    this.mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    this.closeMobileMenuBtn = document.getElementById("closeMobileMenuBtn");
+    this.mobileNavDrawer = document.getElementById("mobileNavDrawer");
+    this.mobileNavItems = document.querySelectorAll(".mobile-nav-item");
+
     // Cart Drawer
     this.cartDrawer = document.getElementById("cartDrawer");
     this.cartDrawerBody = document.getElementById("cartDrawerBody");
@@ -242,6 +255,11 @@ class DantiBikesApp {
     this.resetAdminFormBtn = document.getElementById("resetAdminFormBtn");
     this.cancelEditBtn = document.getElementById("cancelEditBtn");
 
+    // Admin Table Filters
+    this.adminFilterBrand = document.getElementById("adminFilterBrand");
+    this.adminFilterCategory = document.getElementById("adminFilterCategory");
+    this.adminFilterStock = document.getElementById("adminFilterStock");
+
     // Custom option triggers inside Admin form
     this.btnAddCustomBrand = document.getElementById("btnAddCustomBrand");
     this.btnAddCustomCategory = document.getElementById("btnAddCustomCategory");
@@ -275,6 +293,30 @@ class DantiBikesApp {
           this.syncCategoryPillsUI();
         }
         
+        this.navigateTo(view);
+      });
+    });
+
+    // Mobile Menu Drawer Handlers
+    this.mobileMenuBtn?.addEventListener("click", () => {
+      this.mobileNavDrawer?.classList.remove("hidden");
+    });
+    this.closeMobileMenuBtn?.addEventListener("click", () => {
+      this.mobileNavDrawer?.classList.add("hidden");
+    });
+    this.mobileNavDrawer?.addEventListener("click", (e) => {
+      if (e.target === this.mobileNavDrawer) this.mobileNavDrawer.classList.add("hidden");
+    });
+    this.mobileNavItems.forEach(item => {
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+        const view = item.dataset.view || "home";
+        const cat = item.dataset.category;
+        if (cat) {
+          this.filters.category = cat;
+          this.syncCategoryPillsUI();
+        }
+        this.mobileNavDrawer?.classList.add("hidden");
         this.navigateTo(view);
       });
     });
@@ -383,11 +425,9 @@ class DantiBikesApp {
       document.getElementById("filterSidebar")?.classList.toggle("active-mobile");
     });
 
-    // Admin Navigation
+    // Admin Navigation & Modal
     this.openAdminViewBtn?.addEventListener("click", () => this.navigateTo("admin"));
     this.exitAdminViewBtn?.addEventListener("click", () => this.navigateTo("home"));
-    
-    // Admin Modal Triggers
     this.openAdminModalBtn?.addEventListener("click", () => this.openAdminModal());
     this.closeAdminModalBtn?.addEventListener("click", () => this.closeAdminModal());
     this.adminProductModal?.addEventListener("click", (e) => {
@@ -398,7 +438,24 @@ class DantiBikesApp {
     this.adminProductForm?.addEventListener("submit", (e) => this.handleAdminFormSubmit(e));
     this.resetAdminFormBtn?.addEventListener("click", () => this.resetAdminForm());
     this.cancelEditBtn?.addEventListener("click", () => this.closeAdminModal());
-    this.adminTableSearch?.addEventListener("input", () => this.renderAdminTable());
+
+    // Admin Table Filters Handlers
+    this.adminTableSearch?.addEventListener("input", (e) => {
+      this.adminFilters.search = e.target.value;
+      this.renderAdminTable();
+    });
+    this.adminFilterBrand?.addEventListener("change", (e) => {
+      this.adminFilters.brand = e.target.value;
+      this.renderAdminTable();
+    });
+    this.adminFilterCategory?.addEventListener("change", (e) => {
+      this.adminFilters.category = e.target.value;
+      this.renderAdminTable();
+    });
+    this.adminFilterStock?.addEventListener("change", (e) => {
+      this.adminFilters.stock = e.target.value;
+      this.renderAdminTable();
+    });
 
     // Dynamic Custom Option Triggers inside Admin Form
     this.btnAddCustomBrand?.addEventListener("click", () => this.addCustomOption("adminBrand", "marca"));
@@ -406,7 +463,7 @@ class DantiBikesApp {
     this.btnAddCustomWheelSize?.addEventListener("click", () => this.addCustomOption("adminWheelSize", "rodado"));
     this.btnAddCustomFrameSize?.addEventListener("click", () => this.addCustomOption("adminFrameSize", "talle"));
 
-    // 10 Preset Color Pills Handlers
+    // 10 Preset Color Pills Handlers (Single Name)
     const colorPills = document.querySelectorAll("#colorPresetsGrid .color-preset-pill");
     colorPills.forEach(pill => {
       pill.addEventListener("click", () => {
@@ -436,7 +493,6 @@ class DantiBikesApp {
     const select = document.getElementById(selectId);
     if (!select) return;
 
-    // Check if exists
     let existing = Array.from(select.options).find(opt => opt.value.toLowerCase() === trimmed.toLowerCase());
     if (!existing) {
       const opt = document.createElement("option");
@@ -463,7 +519,6 @@ class DantiBikesApp {
       }
     });
 
-    // Sync Nav link active state
     document.querySelectorAll(".nav-link").forEach(link => {
       if (link.dataset.view === viewName) link.classList.add("active");
       else link.classList.remove("active");
@@ -525,7 +580,6 @@ class DantiBikesApp {
   // Filter Products Engine
   getFilteredProducts() {
     return this.products.filter(prod => {
-      // Search text filter
       if (this.filters.search) {
         const query = this.filters.search.toLowerCase();
         const matchModel = prod.model.toLowerCase().includes(query);
@@ -535,27 +589,11 @@ class DantiBikesApp {
         if (!matchModel && !matchBrand && !matchCat && !matchWheel) return false;
       }
 
-      // Category filter
-      if (this.filters.category !== "ALL" && prod.category !== this.filters.category) {
-        return false;
-      }
+      if (this.filters.category !== "ALL" && prod.category !== this.filters.category) return false;
+      if (this.filters.brand !== "ALL" && prod.brand !== this.filters.brand) return false;
+      if (this.filters.wheelSizes.length > 0 && !this.filters.wheelSizes.includes(prod.wheelSize)) return false;
+      if (this.filters.frameSizes.length > 0 && !this.filters.frameSizes.includes(prod.frameSize)) return false;
 
-      // Brand filter
-      if (this.filters.brand !== "ALL" && prod.brand !== this.filters.brand) {
-        return false;
-      }
-
-      // Wheel size filter
-      if (this.filters.wheelSizes.length > 0 && !this.filters.wheelSizes.includes(prod.wheelSize)) {
-        return false;
-      }
-
-      // Frame size filter
-      if (this.filters.frameSizes.length > 0 && !this.filters.frameSizes.includes(prod.frameSize)) {
-        return false;
-      }
-
-      // Color filter
       if (this.filters.color !== "ALL") {
         const prodColor = (prod.colorPrimary || prod.color || "").toLowerCase();
         if (!prodColor.includes(this.filters.color.toLowerCase())) return false;
@@ -566,7 +604,6 @@ class DantiBikesApp {
       if (this.filters.sort === "price-asc") return a.price - b.price;
       if (this.filters.sort === "price-desc") return b.price - a.price;
       if (this.filters.sort === "model-asc") return a.model.localeCompare(b.model);
-      // Default: featured first
       return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
     });
   }
@@ -630,7 +667,7 @@ class DantiBikesApp {
           <div class="card-footer">
             <div class="price-wrap">
               <span class="price-currency">${formattedPrice}</span>
-              <span class="price-installments"><i class="fa-solid fa-credit-card"></i> 6 cuotas de ${new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(prod.price / 6)}</span>
+              <span class="price-installments"><i class="fa-solid fa-credit-card"></i> 6 cuotas fijas</span>
             </div>
 
             <div class="card-btn-group">
@@ -825,7 +862,6 @@ class DantiBikesApp {
       this.cartTotalPrice.textContent = new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(total) + " ARS";
     }
 
-    // Attach Cart Action Handlers
     this.cartDrawerBody.querySelectorAll(".btn-minus").forEach(btn => {
       btn.addEventListener("click", () => this.changeCartQty(btn.dataset.id, -1));
     });
@@ -896,7 +932,7 @@ class DantiBikesApp {
         this.adminColorSecondaryName.value = prod.colorSecondary || "";
         if (prod.colorHex) this.adminColorPrimaryPicker.value = prod.colorHex;
 
-        // Structured Specs
+        // Specs
         const specs = prod.specs || {};
         document.getElementById("adminSpecCuadro").value = specs.cuadro || "";
         document.getElementById("adminSpecTransmision").value = specs.transmision || "";
@@ -940,12 +976,11 @@ class DantiBikesApp {
     const image = document.getElementById("adminImage").value.trim() || "assets/venzo_raptor.jpg";
     const featured = document.getElementById("adminFeatured").checked;
 
-    // Dual Colors
-    const colorPrimary = this.adminColorPrimaryName.value.trim() || "Naranja Danti";
+    // Single word color names
+    const colorPrimary = this.adminColorPrimaryName.value.trim() || "Naranja";
     const colorSecondary = this.adminColorSecondaryName.value.trim() || "";
     const colorHex = this.adminColorPrimaryPicker.value || "#FA9D00";
 
-    // Structured Specs
     const specs = {
       cuadro: document.getElementById("adminSpecCuadro").value.trim() || "Aluminio Danti Pro",
       transmision: document.getElementById("adminSpecTransmision").value.trim() || "Shimano 1x11v",
@@ -999,12 +1034,22 @@ class DantiBikesApp {
   renderAdminTable() {
     if (!this.adminProductTableBody) return;
 
-    const filterText = (this.adminTableSearch?.value || "").toLowerCase();
-    const filteredList = this.products.filter(p => 
-      p.model.toLowerCase().includes(filterText) ||
-      p.brand.toLowerCase().includes(filterText) ||
-      p.category.toLowerCase().includes(filterText)
-    );
+    const filteredList = this.products.filter(p => {
+      // Text search
+      if (this.adminFilters.search) {
+        const query = this.adminFilters.search.toLowerCase();
+        if (!p.model.toLowerCase().includes(query) && !p.brand.toLowerCase().includes(query)) return false;
+      }
+      // Brand filter
+      if (this.adminFilters.brand !== "ALL" && p.brand !== this.adminFilters.brand) return false;
+      // Category filter
+      if (this.adminFilters.category !== "ALL" && p.category !== this.adminFilters.category) return false;
+      // Stock/Featured filter
+      if (this.adminFilters.stock === "in-stock" && p.stock <= 0) return false;
+      if (this.adminFilters.stock === "featured" && !p.featured) return false;
+
+      return true;
+    });
 
     this.adminProductTableBody.innerHTML = filteredList.map(p => {
       const formattedPrice = new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(p.price);
@@ -1030,7 +1075,6 @@ class DantiBikesApp {
       `;
     }).join("");
 
-    // Attach Action Handlers for Edit/Delete
     this.adminProductTableBody.querySelectorAll(".btn-tb-edit").forEach(btn => {
       btn.addEventListener("click", () => this.openAdminModal(btn.dataset.id));
     });

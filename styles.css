@@ -5,13 +5,13 @@
    Official Brands: MOOVE, ZEST, PRK, SAMURAI, VENZO
    ========================================================================== */
 
-/* --- CSS VARIABLES & TOKENS (Extracted from official logo) --- */
+/* --- CSS VARIABLES & TOKENS --- */
 :root {
   --bg-main: #121214;
   --bg-card: #1C1C20;
   --bg-card-hover: #26262C;
   --bg-input: #161618;
-  --bg-glass: rgba(28, 28, 32, 0.92);
+  --bg-glass: rgba(28, 28, 32, 0.94);
   
   /* Logo warm golden-amber orange */
   --accent-orange: #FA9D00;
@@ -221,7 +221,7 @@ button {
   letter-spacing: 0.15em;
 }
 
-/* Navigation Links */
+/* Navigation Links (Desktop) */
 .nav-menu {
   display: flex;
   align-items: center;
@@ -383,11 +383,75 @@ button {
   padding: 4px;
 }
 
+/* --- MOBILE NAVIGATION DRAWER OVERLAY --- */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 3500;
+  display: flex;
+}
+.mobile-nav-content {
+  width: 85%;
+  max-width: 340px;
+  height: 100%;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border-color-highlight);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  animation: slideInLeft 0.3s ease;
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-fast);
+}
+.mobile-nav-item:hover, .mobile-nav-item.active {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  background: var(--accent-orange-light);
+}
+.mobile-nav-item.highlight-admin {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+}
+
 /* --- HERO SECTION --- */
 .hero-section {
   position: relative;
-  min-height: 80vh;
-  padding: 100px 24px 80px 24px;
+  min-height: 75vh;
+  padding: 80px 24px 60px 24px;
   background: linear-gradient(135deg, rgba(18, 18, 20, 0.95) 0%, rgba(28, 28, 32, 0.85) 100%),
               url('assets/venzo_raptor.jpg') center/cover no-repeat;
   border-bottom: 1px solid var(--border-color);
@@ -431,15 +495,15 @@ button {
 .hero-title {
   font-family: var(--font-head);
   font-weight: 900;
-  font-size: 3.8rem;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   max-width: 850px;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
 .hero-subtitle {
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
   color: var(--text-muted);
   max-width: 680px;
   margin-bottom: 35px;
@@ -457,7 +521,7 @@ button {
   color: var(--text-dark);
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.95rem;
   padding: 14px 28px;
   border-radius: var(--radius-md);
   display: inline-flex;
@@ -480,7 +544,7 @@ button {
   border: 1px solid var(--border-color-highlight);
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   padding: 14px 28px;
   border-radius: var(--radius-md);
   display: inline-flex;
@@ -508,7 +572,7 @@ button {
 }
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
 }
 .pillar-card {
@@ -554,11 +618,11 @@ button {
 
 /* --- DIRECT EQUALIZED BRAND LOGOS MARQUEE BANNER --- */
 .brands-marquee-section.direct-banner {
-  padding: 28px 0;
+  padding: 24px 0;
   background: #141418;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-  margin: 32px 0;
+  margin: 28px 0;
   overflow: hidden;
 }
 
@@ -571,7 +635,7 @@ button {
 }
 .marquee-track {
   display: flex;
-  gap: 65px;
+  gap: 50px;
   width: max-content;
   align-items: center;
   animation: marqueeScroll 25s linear infinite;
@@ -585,13 +649,12 @@ button {
   100% { transform: translateX(-50%); }
 }
 
-/* Floating Brand Logo Item - Equalized bounding box */
 .brand-marquee-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 170px;
-  height: 52px;
+  width: 150px;
+  height: 46px;
   padding: 0;
   cursor: pointer;
   background: transparent;
@@ -600,8 +663,8 @@ button {
 }
 
 .brand-logo-img-real {
-  max-height: 48px;
-  max-width: 160px;
+  max-height: 42px;
+  max-width: 140px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -636,7 +699,6 @@ button {
   align-items: center;
   gap: 8px;
   transition: var(--transition-fast);
-
 }
 .color-preset-pill:hover, .color-preset-pill.active {
   border-color: var(--accent-orange);
@@ -650,6 +712,28 @@ button {
   display: inline-block;
 }
 
+/* --- SHOWROOM DETAILS & GOOGLE MAPS GRID --- */
+.showroom-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+  align-items: start;
+}
+.showroom-info-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.map-card-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  overflow: hidden;
+}
+
 /* --- DANTI SHOWCASE BANNERS --- */
 .danti-showcase-section {
   padding: 60px 24px;
@@ -658,7 +742,7 @@ button {
 }
 .showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
 }
 .showcase-card {
@@ -691,7 +775,7 @@ button {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(18, 18, 20, 0.3) 0%, rgba(18, 18, 20, 0.95) 100%);
-  padding: 36px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -707,7 +791,7 @@ button {
 .showcase-title {
   font-family: var(--font-head);
   font-weight: 900;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: var(--text-main);
   text-transform: uppercase;
   line-height: 1.15;
@@ -762,7 +846,7 @@ button {
 .catalog-page-header {
   background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
   border-bottom: 1px solid var(--border-color);
-  padding: 60px 24px 40px 24px;
+  padding: 50px 24px 35px 24px;
   text-align: center;
 }
 .catalog-header-content {
@@ -775,16 +859,16 @@ button {
 .catalog-header-content h2 {
   font-family: var(--font-head);
   font-weight: 900;
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: 10px;
 }
 .catalog-header-content p {
   color: var(--text-muted);
-  font-size: 1.05rem;
-  margin-bottom: 30px;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
 }
 
-/* Prominent Search Box inside Catalog Page */
+/* Prominent Search Box */
 .catalog-search-box {
   width: 100%;
   max-width: 720px;
@@ -812,7 +896,7 @@ button {
   background: transparent;
   border: none;
   color: var(--text-main);
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 .catalog-search-box input:focus {
   outline: none;
@@ -822,7 +906,7 @@ button {
   color: var(--text-dark);
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   padding: 10px 24px;
   border-radius: var(--radius-full);
   display: flex;
@@ -1037,7 +1121,7 @@ button {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
@@ -1061,7 +1145,7 @@ button {
 .card-image-wrap {
   position: relative;
   width: 100%;
-  height: 210px;
+  height: 200px;
   background: #000;
   overflow: hidden;
 }
@@ -1077,8 +1161,8 @@ button {
 
 .card-badges {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 10px;
+  left: 10px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1109,7 +1193,7 @@ button {
 }
 
 .card-content {
-  padding: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -1125,7 +1209,7 @@ button {
 .card-title {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.3;
   margin-bottom: 12px;
   color: var(--text-main);
@@ -1153,7 +1237,7 @@ button {
   border-top: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 .price-wrap {
   display: flex;
@@ -1162,7 +1246,7 @@ button {
 .price-currency {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   color: var(--text-main);
 }
 .price-installments {
@@ -1171,24 +1255,28 @@ button {
   font-weight: 600;
 }
 
+/* Fluid, responsive button row */
 .card-btn-group {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 .btn-card-add-cart {
+  flex: 1;
   background: var(--accent-orange-light);
   border: 1px solid var(--accent-orange);
   color: var(--accent-orange);
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.8rem;
-  padding: 9px 12px;
+  padding: 9px 10px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
+  white-space: nowrap;
   transition: var(--transition-fast);
 }
 .btn-card-add-cart:hover {
@@ -1196,29 +1284,34 @@ button {
   color: var(--text-dark);
 }
 .btn-card-wa {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
   background: #25D366;
   color: #000;
-  font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.8rem;
-  padding: 9px 12px;
+  font-size: 0.95rem;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   transition: var(--transition-fast);
 }
 .btn-card-wa:hover {
   background: #20BA5A;
 }
 .btn-card-detail {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
   background: var(--bg-input);
   border: 1px solid var(--border-color);
   color: var(--text-main);
-  padding: 9px 12px;
   border-radius: var(--radius-md);
-  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
   transition: var(--transition-fast);
 }
 .btn-card-detail:hover {
@@ -1271,7 +1364,7 @@ button {
 
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   margin-bottom: 40px;
 }
@@ -1311,12 +1404,6 @@ button {
   font-size: 0.9rem;
   flex: 1;
 }
-.service-price {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--accent-orange);
-  font-size: 1rem;
-}
 .service-cta-box {
   text-align: center;
 }
@@ -1325,8 +1412,8 @@ button {
   color: #000;
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: 1.05rem;
-  padding: 16px 36px;
+  font-size: 1rem;
+  padding: 16px 32px;
   border-radius: var(--radius-md);
   display: inline-flex;
   align-items: center;
@@ -1339,7 +1426,7 @@ button {
   box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
 }
 
-/* --- ABOUT SECTION --- */
+/* --- ABOUT SECTION & SHOWROOM MAP --- */
 .about-section {
   padding: 80px 24px;
   max-width: 1400px;
@@ -1547,7 +1634,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   overflow-y: auto;
 }
 .modal-card {
@@ -1563,10 +1650,10 @@ button {
 }
 .modal-close-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 38px;
-  height: 38px;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
   background: var(--bg-input);
   border: 1px solid var(--border-color);
   color: var(--text-main);
@@ -1584,12 +1671,12 @@ button {
 }
 
 .modal-body {
-  padding: 40px;
+  padding: 32px;
 }
 .detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 32px;
 }
 
 .gallery-wrap {
@@ -1599,7 +1686,7 @@ button {
 }
 .main-img-box {
   width: 100%;
-  height: 380px;
+  height: 340px;
   background: #000;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1615,21 +1702,21 @@ button {
 .detail-info {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 .detail-title {
   font-family: var(--font-head);
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.15;
 }
 .detail-subtitle {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 .detail-price {
   font-family: var(--font-mono);
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-main);
 }
@@ -1649,7 +1736,7 @@ button {
 }
 .spec-table-card h4 {
   font-family: var(--font-head);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -1657,8 +1744,8 @@ button {
 }
 .spec-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
 }
 .spec-item {
   display: flex;
@@ -1700,6 +1787,8 @@ button {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 24px 30px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .admin-badge {
   font-family: var(--font-mono);
@@ -1720,12 +1809,13 @@ button {
 .admin-nav-actions {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 .metric-card {
   background: var(--bg-card);
@@ -1772,15 +1862,28 @@ button {
   text-transform: uppercase;
 }
 
-/* Admin Table Full Width */
+/* Admin Table Bar & Filters */
 .admin-table-card.full-width {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 24px;
 }
+.admin-filter-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.admin-filters-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
-/* Admin Creation & Editing Modal Overlay */
+/* Admin Modal */
 .admin-modal-card {
   max-width: 850px;
 }
@@ -1805,7 +1908,6 @@ button {
   color: var(--text-dark);
 }
 
-/* Dual Color Picker Group */
 .color-picker-input-group {
   display: flex;
   align-items: center;
@@ -1824,7 +1926,6 @@ button {
   flex: 1;
 }
 
-/* Structured Specifications Box */
 .form-specs-box {
   background: var(--bg-main);
   border: 1px solid var(--border-color);
@@ -1848,7 +1949,6 @@ button {
   gap: 14px;
 }
 
-/* Card Title Bar */
 .card-title-bar {
   display: flex;
   align-items: center;
@@ -1968,9 +2068,9 @@ button {
   background: var(--bg-input);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 6px 12px;
+  padding: 8px 12px;
   font-size: 0.85rem;
-  width: 220px;
+  width: 180px;
 }
 .admin-table {
   width: 100%;
@@ -2146,7 +2246,10 @@ button {
   font-size: 0.8rem;
 }
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
+/* ==========================================================================
+   ARROYOFITNESS INSPIRED FLUID RESPONSIVE MEDIA QUERIES (MOBILE UX OVERHAUL)
+   ========================================================================== */
+
 @media (max-width: 1024px) {
   .catalog-container {
     grid-template-columns: 1fr;
@@ -2171,8 +2274,8 @@ button {
   .specs-fields-grid {
     grid-template-columns: 1fr;
   }
-  .hero-title {
-    font-size: 2.8rem;
+  .showroom-details-grid {
+    grid-template-columns: 1fr;
   }
   .detail-grid {
     grid-template-columns: 1fr;
@@ -2183,23 +2286,115 @@ button {
 }
 
 @media (max-width: 768px) {
+  /* Hide desktop menu & show mobile hamburger toggle */
   .nav-menu {
     display: none;
   }
   .mobile-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .hero-title {
-    font-size: 2.2rem;
+  .admin-badge-text {
+    display: none;
   }
+
+  /* Compact Hero Section */
+  .hero-section {
+    padding: 60px 18px 45px 18px;
+    min-height: auto;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-hero-primary, .btn-hero-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+
+  /* Compact Pillars & Showcase */
+  .danti-pillars-section {
+    margin-top: 0;
+    padding: 20px 16px;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 2-Column Fluid Product Cards Grid on Mobile */
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+  .card-image-wrap {
+    height: 140px;
+  }
+  .card-content {
+    padding: 12px;
+  }
+  .card-title {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .price-currency {
+    font-size: 1.1rem;
+  }
+  .price-installments {
+    font-size: 0.68rem;
+  }
+  .card-btn-group {
+    gap: 6px;
+  }
+  .btn-card-add-cart {
+    font-size: 0.75rem;
+    padding: 7px 8px;
+  }
+
+  /* Catalog Search Box */
   .catalog-search-box {
     flex-direction: column;
     border-radius: var(--radius-lg);
-    padding: 12px;
+    padding: 10px;
     gap: 10px;
   }
   .btn-search-catalog {
     width: 100%;
     justify-content: center;
+  }
+
+  /* Admin Header */
+  .admin-header {
+    padding: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .admin-nav-actions {
+    width: 100%;
+  }
+  .admin-nav-actions button {
+    flex: 1;
+    justify-content: center;
+  }
+  .admin-filters-bar {
+    width: 100%;
+  }
+  .admin-filters-bar select, .admin-filters-bar input {
+    flex: 1;
+    width: 100%;
+  }
+  .form-row.split-2, .form-row.split-3 {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
   }
 }
