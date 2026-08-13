@@ -177,7 +177,7 @@ class DantiBikesApp {
 
   // Load / Save Local Storage
   loadProductsFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_products_v6");
+    const saved = localStorage.getItem("danti_bikes_products_v7");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -185,11 +185,11 @@ class DantiBikesApp {
   }
 
   saveProductsToStorage() {
-    localStorage.setItem("danti_bikes_products_v6", JSON.stringify(this.products));
+    localStorage.setItem("danti_bikes_products_v7", JSON.stringify(this.products));
   }
 
   loadCartFromStorage() {
-    const saved = localStorage.getItem("danti_bikes_cart_v6");
+    const saved = localStorage.getItem("danti_bikes_cart_v7");
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
@@ -197,7 +197,7 @@ class DantiBikesApp {
   }
 
   saveCartToStorage() {
-    localStorage.setItem("danti_bikes_cart_v6", JSON.stringify(this.cart));
+    localStorage.setItem("danti_bikes_cart_v7", JSON.stringify(this.cart));
   }
 
   // Initialize DOM References
@@ -241,6 +241,13 @@ class DantiBikesApp {
     this.homeFeaturedGrid = document.getElementById("homeFeaturedGrid");
     this.productResultsCount = document.getElementById("productResultsCount");
     this.emptyState = document.getElementById("emptyState");
+
+    // Mobile Filter Panel controls
+    this.filterSidebar = document.getElementById("filterSidebar");
+    this.toggleMobileFilterBtn = document.getElementById("toggleMobileFilterBtn");
+    this.closeFilterMobileBtn = document.getElementById("closeFilterMobileBtn");
+    this.btnApplyMobileFilters = document.getElementById("btnApplyMobileFilters");
+    this.btnBackMobileFilters = document.getElementById("btnBackMobileFilters");
 
     // Admin Panel elements
     this.openAdminViewBtn = document.getElementById("openAdminViewBtn");
@@ -435,9 +442,20 @@ class DantiBikesApp {
     document.getElementById("clearFiltersBtn")?.addEventListener("click", () => this.resetFilters());
     document.getElementById("emptyResetFiltersBtn")?.addEventListener("click", () => this.resetFilters());
 
-    // Mobile Filter Sidebar Toggle
-    document.getElementById("toggleMobileFilterBtn")?.addEventListener("click", () => {
-      document.getElementById("filterSidebar")?.classList.toggle("active-mobile");
+    // Mobile Filter Sidebar Toggle, Apply & Close Actions
+    this.toggleMobileFilterBtn?.addEventListener("click", () => {
+      this.filterSidebar?.classList.add("active-mobile");
+    });
+    this.closeFilterMobileBtn?.addEventListener("click", () => {
+      this.filterSidebar?.classList.remove("active-mobile");
+    });
+    this.btnBackMobileFilters?.addEventListener("click", () => {
+      this.filterSidebar?.classList.remove("active-mobile");
+    });
+    this.btnApplyMobileFilters?.addEventListener("click", () => {
+      this.filterSidebar?.classList.remove("active-mobile");
+      this.renderCatalogGrid();
+      document.getElementById("productGrid")?.scrollIntoView({ behavior: "smooth" });
     });
 
     // Admin Navigation & Modal
@@ -558,7 +576,6 @@ class DantiBikesApp {
       this.updateAdminMetrics();
     }
 
-    // Trigger scroll reveal for newly activated view
     setTimeout(() => this.initScrollReveal(), 100);
   }
 

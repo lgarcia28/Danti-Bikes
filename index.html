@@ -19,7 +19,7 @@
 </head>
 <body>
 
-  <!-- TOP ANNOUNCEMENT BAR (Removed official brands text per user request) -->
+  <!-- TOP ANNOUNCEMENT BAR -->
   <div class="announcement-bar">
     <div class="announcement-content">
       <span><i class="fa-solid fa-flag-checkered"></i> DANTI BIKES SHOWROOM & SERVICE TALLER</span>
@@ -140,7 +140,7 @@
         </div>
       </div>
 
-      <!-- Danti Engineering Pillars (Fixed Icon for Despachos Asegurados + Mobile 2x2 Grid) -->
+      <!-- Danti Engineering Pillars -->
       <div class="danti-pillars-section reveal-on-scroll">
         <div class="danti-pillars-container">
           <div class="pillars-grid">
@@ -283,11 +283,14 @@
             </div>
           </div>
 
-          <!-- Sidebar Filters Panel -->
+          <!-- Sidebar Filters Panel with Close & Apply Action Bar for Mobile -->
           <aside class="filter-sidebar" id="filterSidebar">
             <div class="filter-header">
-              <h3><i class="fa-solid fa-filter"></i> FILTRAR POR</h3>
-              <button class="btn-clear-filters" id="clearFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Limpiar</button>
+              <h3><i class="fa-solid fa-filter"></i> FILTRAR PRODUCTOS</h3>
+              <div class="filter-header-actions">
+                <button class="btn-clear-filters" id="clearFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Limpiar</button>
+                <button class="btn-close-filter-mobile" id="closeFilterMobileBtn" title="Cerrar Filtros"><i class="fa-solid fa-xmark"></i></button>
+              </div>
             </div>
 
             <!-- Filter: Category Buttons -->
@@ -364,6 +367,16 @@
                 <option value="Verde">Verde</option>
                 <option value="Amarillo">Amarillo</option>
               </select>
+            </div>
+
+            <!-- STICKY ACTION BAR FOR MOBILE FILTERS (APPLY / CLOSE) -->
+            <div class="mobile-filter-footer-actions">
+              <button class="btn-apply-filters-mobile" id="btnApplyMobileFilters">
+                <i class="fa-solid fa-check"></i> Aplicar Filtros
+              </button>
+              <button class="btn-back-filters-mobile" id="btnBackMobileFilters">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Catálogo
+              </button>
             </div>
 
           </aside>
